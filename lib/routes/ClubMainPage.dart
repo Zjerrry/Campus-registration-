@@ -57,7 +57,7 @@ Widget Club_Information(context,ClubName)
                           fontSize: 25
                       ),),//社团名称
                       Text("类型:  育人实践基地")//社团类型
-                    ],
+                    ],//！！！！！！！！！！！会溢出屏幕！！！！！！！！！
                   ),
                 ),
                 Icon(Icons.favorite_border,size: 30,) //是否关注该社团

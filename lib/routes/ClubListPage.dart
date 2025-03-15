@@ -122,7 +122,7 @@ class ClubList_Body extends StatefulWidget {
 class _ClubList_BodyState extends State<ClubList_Body> {
   List dataList = _ClublistpageState.SearchValue != "" ? searchClub:allClub;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {//改为瀑布流式布局，待解决
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
