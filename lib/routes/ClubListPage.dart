@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'ClubMainPage.dart';
+import 'package:test_fist/widgets/ClubSearch.dart';
+import 'package:test_fist/widgets/Tool.dart';
 
-List allClub = ["天外天工作室","青年志愿者协会XXXXXXXXXXXXXXXXXXX","学生会","天津大学校园建设发展协会（北洋讲解队）","abcdef","abc"];//全部社团列表
-List searchClub = [];//筛选后的社团列表
 
 class Clublistpage extends StatefulWidget {
   const Clublistpage({super.key});
@@ -19,6 +19,7 @@ class _ClublistpageState extends State<Clublistpage> {
       appBar: AppBar(
         title: TopSearchBar(
             lable: "搜索社团",
+            SearchValue: SearchValue,
             onSearch: (value){
               setState(() {
                 SearchValue = value;
@@ -32,85 +33,6 @@ class _ClublistpageState extends State<Clublistpage> {
   }
 }
 
-//顶部搜索栏
-class TopSearchBar extends StatefulWidget {
-  const TopSearchBar({super.key,required this.lable,required this.onSearch});
-
-  final String lable;
-  final Function(String) onSearch;
-
-  @override
-  State<TopSearchBar> createState() => _TopSearchBarState();
-}
-
-class _TopSearchBarState extends State<TopSearchBar> {
-  FocusNode _focusNode = FocusNode();//焦点
-  //String SearchValue = "";
-  TextEditingController _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp){
-      _focusNode.requestFocus();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    //屏幕尺寸
-    MediaQueryData queryData = MediaQuery.of(context);
-    return Container(
-      width: queryData.size.width ,
-      height: 40,
-      padding: EdgeInsets.only(left: 20,right: 20),
-      alignment: Alignment.centerRight,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white
-      ),
-      child:Padding(
-          padding: EdgeInsets.all(5),
-          child:TextField(
-            controller: _controller,
-            focusNode: _focusNode,
-            autofocus: false,
-            decoration: InputDecoration(
-                hintText: widget.lable,
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                icon: const Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Icon(Icons.search,
-                    size: 20,
-                    color: Colors.blue,
-                  ),),
-                //输入后显示的清除输入内容按键
-                suffixIcon: _ClublistpageState.SearchValue.isNotEmpty ?
-                  IconButton(onPressed: ()
-                  {
-                    setState(() {
-                      _ClublistpageState.SearchValue = "";
-                      _controller.clear();
-                      //Search(_ClublistpageState.SearchValue);
-                    });
-                  }, icon: Icon(Icons.close)):null,
-
-                ),
-            onChanged: (value){
-              setState(() {
-                _ClublistpageState.SearchValue = value;
-              });
-            },
-            onSubmitted: (value){
-              widget.onSearch(value);
-              },
-        ),
-      ),
-
-    );
-  }
-}
 
 //社团列表
 class ClubList_Body extends StatefulWidget {
@@ -178,8 +100,8 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                               ),
                               Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
-                                child: Text("${_ClublistpageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index]}",
-                                  style: TextStyle(
+                                child: Text(truncateText(_ClublistpageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                     height: 1.2
@@ -199,80 +121,5 @@ class _ClubList_BodyState extends State<ClubList_Body> {
         }
     );
   }
-}
-//搜索筛选的实现
-void Search(String SearchValue)
-{
-  searchClub = [];//初始化筛选列表
-  if(SearchValue == "") {
-    return;
-  }
-  for(int i=0;i<allClub.length;i++)
-    {
-      if(allClub[i].length<SearchValue.length)
-        continue;
-      if(StrStr(allClub[i], SearchValue) >= 0)
-        {
-          searchClub.add(allClub[i]);
-        }
-    }
-}
-//KMP算法实现搜索内容对比
-int StrStr(String Clubname,String Searchvalue)
-{
-  List next = build_next(Searchvalue);
-
-  int i = 0;
-  int j = 0;
-  while(i < Clubname.length)
-    {
-      if(Clubname[i] == Searchvalue[j])
-      {
-        i++;
-        j++;
-      }
-      else if(j>0)
-        {
-          j = next[j-1];
-        }
-      else
-        {
-          i++;
-        }
-      if(j == Searchvalue.length)
-      {
-        return i-j;
-      }
-    }
-    return -1;
-}
-
-List build_next(String Searchvalue)
-{
-  List next = [0];
-  int prefix_len = 0;
-  int i = 1;
-  while(i<Searchvalue.length)
-    {
-      if(Searchvalue[prefix_len] == Searchvalue[i])
-        {
-          prefix_len++;
-          next.add(prefix_len);
-          i++;
-        }
-      else
-        {
-          if(prefix_len == 0)
-            {
-              next.add(0);
-              i++;
-            }
-          else
-          {
-            prefix_len = next[prefix_len];
-          }
-        }
-    }
-    return next;
 }
 
