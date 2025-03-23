@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/ClubMainPage.dart';
 import 'addLinkClub.dart';
+import 'package:test_fist/widgets/ImagePicker.dart';
 Set<String> addedClub = {};
 List<String> addClubList = [];
 
@@ -46,7 +47,18 @@ class _BodyState extends State<_Body> {
             Body(context),
             //--------------图片上传---------------------
 
-
+            const SliverPadding(padding: EdgeInsets.only(left: 100,bottom: 20),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                      ImagePicker(
+                        child: Icon(Icons.photo_outlined),
+                      ),
+                  ],
+                )
+              ),
+            ),
 
             //--------------图片上传---------------------
 
