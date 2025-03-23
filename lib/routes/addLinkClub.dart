@@ -25,7 +25,11 @@ class _addLinkClubState extends State<addLinkClub> {
         padding: EdgeInsets.symmetric(horizontal: 100),
         child: ElevatedButton(
           onPressed: (){
-            Navigator.pop(context,Club_added);
+            setState(() {
+              print("Club:$Club_added");
+              Navigator.pop(context,Club_added);
+            });
+
           },
           child: Text("完成社团添加",
             style: TextStyle(
@@ -140,6 +144,7 @@ class _addLinkClubState extends State<addLinkClub> {
                             ),
                           ),
                         ),
+                        //添加选项
                         Padding(padding: EdgeInsets.all(20),
                         child: ElevatedButton(
                             onPressed: (){

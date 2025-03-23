@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_fist/routes/ClubMainPage.dart';
 import 'addLinkClub.dart';
 Set<String> addedClub = {};
+List<String> addClubList = [];
 
 class EventReleasePage extends StatefulWidget {
   const EventReleasePage({super.key});
@@ -32,95 +34,121 @@ class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("发布新活动"),
-      ),
-      body:CustomScrollView(
-        slivers: [
-          Body(context),
-          SliverToBoxAdapter(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton.icon(onPressed: (){
-                  setState((){
-                    {
-                      if(SchoolIndex == 2)
-                      {
-                        SchoolIndex = 0;
-                      }
-                      else
-                      {
-                        SchoolIndex +=1;
-                      }
+        appBar: AppBar(
+          title: Text("发布新活动",style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w700
+          ),),
+        ),
+        body:CustomScrollView(
+          slivers: [
+            //活动的填写
+            Body(context),
+            //--------------图片上传---------------------
 
-                    }
-                  });
-                },
-                  label: Text(School[SchoolIndex],
-                    style: const TextStyle(
-                        color: Colors.blue
-                    ),
-                  ),
-                  icon: const Icon(Icons.location_on_outlined,color: Colors.blue,),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                //发送按钮
-                ElevatedButton(
-                    onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                    ),
-                    child: const Text("发送",
-                        style: TextStyle(
-                            color: Colors.white
-                        )
-                    )
 
-                )
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                //添加关联社团的按钮
-                ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> addLinkClub())
-                      ).then((result){
-                        addedClub = result.toSet();
-                      });
-                    },
-                    child: Text("添加关联社团",
-                      style: TextStyle(
-                        color: Colors.black
-                      ),
-                    ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[350]
-                  ),
-                ),
-                //显示关联社团
-                // !!!!!!!!待完成!!!!!!!!!!
-                const Row(
+
+            //--------------图片上传---------------------
+
+            //内容操作区
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+              sliver: SliverToBoxAdapter(
+                child: Column(
                   children: [
+                    //校区选择和发送
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        //校区选择
+                        TextButton.icon(
+                          onPressed: ()
+                          {//点击校区更换
+                          setState((){{if(SchoolIndex == 2) {SchoolIndex = 0;}
+                          else {SchoolIndex +=1;}}});
+                                  },
+                          label: Text(
+                            School[SchoolIndex],
+                            style: const TextStyle(
+                                  color: Colors.blue
+                                ),
+                          ),
+                          icon: const Icon(Icons.location_on_outlined,color: Colors.blue,size: 20,),
+                        ),
+                        //发送按钮
+                        ElevatedButton(
+                            onPressed: (){},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                            ),
+                            child: const Text("发送",
+                                style: TextStyle(color: Colors.white)
+                            )
+                        )
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 6,
+                    ),
+
+                    //关联社区选择
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context)=> addLinkClub())
+                              );
+                              if(result != null)
+                              {
+                                setState(() {
+                                  addClubList = List.from(result);
+                                });
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey[300]
+                            ),
+                            child: const Text("添加关联社团",
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),
+                          ),
+                        ],
+                      ),
 
                   ],
-                )
-              ],
+                ),
+              ),
             ),
-          )
-        ],
-      )
+
+
+            //显示关联社团
+            SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+              sliver: SliverGrid(
+                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                    //mainAxisExtent: 120,
+                    crossAxisCount: 4,
+                    childAspectRatio: 2.2,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return _buildClubTag(context, index);
+                      },
+                      childCount: addClubList.length
+                  )
+              ),
+            )
+          ],
+        )
 
     ) ;
   }
 }
+
+
 
 Widget Body(BuildContext context)
 {
@@ -130,56 +158,84 @@ Widget Body(BuildContext context)
   TextEditingController _content_controller = TextEditingController();
 
   return SliverToBoxAdapter(
-    child: Padding(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: [
-          //输入活动名称
-          TextFormField(
-            controller: _title_controller,
-            decoration:const  InputDecoration(
-                hintText: "添加标题",
-                hintStyle: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500
-                )
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            //输入活动名称
+            TextFormField(
+              controller: _title_controller,
+              decoration:const  InputDecoration(
+                  hintText: "添加标题",
+                  hintStyle: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500
+                  )
+              ),
+              validator: (value){
+                return value == null||value.trim().isNotEmpty?null:"活动名称不能为空";
+              },
             ),
-            validator: (value){
-              return value == null||value.trim().isNotEmpty?null:"活动名称不能为空";
-            },
-          ),
-          TextFormField(
-            controller: _place_controller,
-            decoration:const  InputDecoration(
-                labelText: "活动地点："
+            TextFormField(
+              controller: _place_controller,
+              decoration:const  InputDecoration(
+                  hintText: "添加活动地点",
+              ),
             ),
-          ),
-          TextFormField(
-            controller: _time_controller,
-            decoration:const  InputDecoration(
-                labelText: "活动时间："
+            TextFormField(
+              controller: _time_controller,
+              decoration:const  InputDecoration(
+                  hintText: "添加活动时间"
+              ),
             ),
-          ),
-          //活动地点
-          TextFormField(
-            controller: _content_controller,
-            maxLines: null,
-            minLines: 15,
-            decoration: const InputDecoration(
-              // labelText: "活动内容",
-                hintText: "请添加正文",
-                hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 25
+            //活动地点
+            TextFormField(
+              controller: _content_controller,
+              maxLines: null,
+              minLines: 15,
+              decoration: const InputDecoration(
+                  hintText: "请添加正文",
+                  hintStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 25
+                  ),
+                  border: InputBorder.none
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      )
+  );
+}
+
+Widget _buildClubTag(BuildContext context,int index)
+{
+  return TextButton(
+      style: TextButton.styleFrom(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        //side: BorderSide(color: Colors.blueAccent.withOpacity(0.3)),
+            ),
+        ),
+      onPressed: () {
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context)=> ClubMainPage(
+            clubname: addClubList[index],
+          ))
+       );
+      },
+      child: Text(
+                "#${addClubList[index]}",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    color: Colors.blueAccent,
+                    fontSize: 14
                 ),
-                border: InputBorder.none
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-    )
+    ),
   );
 }
