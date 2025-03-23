@@ -16,7 +16,7 @@ class _EventReleasePageState extends State<EventReleasePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body:_Body() ,
+      body:_Body(key: UniqueKey(),) ,
     );
   }
 }
