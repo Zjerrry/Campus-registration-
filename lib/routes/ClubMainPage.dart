@@ -12,10 +12,32 @@ class _ClubMainPageState extends State<ClubMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration:  BoxDecoration(
+                  color: Colors.grey[400],
+                ),
+                child: const Padding(
+                  padding:  EdgeInsets.all(8.0),
+                  child: Text("社团主页"),
+                ),
+              ),
+            ],
+          ),
+        actions: [
+          IconButton(
+              onPressed: (){
 
+              },
+              icon: Icon(Icons.settings,size: 40,)
+          )
+        ],
       ),
       body: CustomScrollView(
         slivers: [
+          //------------------------------------------------------------------------
           //社团信息
           Club_Information(context,widget.clubname),
           SliverList(
@@ -42,13 +64,19 @@ Widget Club_Information(context,ClubName)
     child: Container(
       child: Column(
         children: [
+          //----------------------------------------------------------------------------
           //社团信息部分
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.network("https://s3-alpha-sig.figma.com/img/4a92/272c/15495ba4b99f0c27386610b0fb8af758?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=j3j6eWQEj56i-AS6o9HDN0GG9mMKTsfOe4pZH08fLvHvAi~Wcpm8VRO-93vlIChrYffVEpQbKG9xm2wWI7EwtcWfSoPxdjrVmCKD5thR2oDVwk3YfSvqWLltzuYO6CXgcPqHxhmvtODVNnQstDLGT7iXtlJJ7-8F5mFUnXFTDQI035DX2BGvuCoL2ad8rhQhy8Y6lA36z1a3TTbwF1cXE216kD6d4WTXWx6jakwSaeW9~1gNZipuD~PIeRkRxmYImDaY2Z8lYCFJjlbC138s6gthr7DhhjznTTT99-n-4XHRJP6XAWMRjHFtF-oKMGUWCGyyPNEMKAafeEm9AUY~uQ__"), //社团头像
+                Image.asset("images/twt.png",
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container( // 错误处理
+                    color: Colors.grey[200],
+                    child: const Icon(Icons.broken_image),
+                  ),), //社团头像
                 Flexible(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -73,7 +101,9 @@ Widget Club_Information(context,ClubName)
                 ) //是否关注该社团
               ],),
           ),
+          //-------------------------------------------------------------
           //社团简介部分
+          //---------------------------------------------------------------
           ConstrainedBox(
               constraints:const  BoxConstraints(
                 minHeight: 100
@@ -83,11 +113,11 @@ Widget Club_Information(context,ClubName)
               child:  Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 20,top: 3),
                     child: Text("社团简介:",style: TextStyle(
                         fontWeight: FontWeight.w700,
-                      color: Colors.grey[600],
+                      color: Colors.black87,
                       fontSize: 16
                       )
                     ),
