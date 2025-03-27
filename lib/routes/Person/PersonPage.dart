@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:test_fist/routes/Settings/settings.dart';
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
 
@@ -18,7 +18,14 @@ class _PersonPageState extends State<PersonPage> {
             icon: const Icon(Icons.mail_outline, size: 30),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SettingsPage(),
+              ),
+            );
+            },
             icon: const Icon(Icons.settings, size: 30),
           ),
         ],
@@ -172,4 +179,5 @@ BoxDecoration ButtonStyle()
       ),]
   );
 }
+
 
