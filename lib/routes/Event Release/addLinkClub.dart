@@ -100,7 +100,7 @@ class _addLinkClubState extends State<addLinkClub> {
                           borderRadius:  const BorderRadius.only( topLeft:Radius.circular(40),bottomLeft: Radius.circular(40)),
                           child: AspectRatio(
                             aspectRatio: 1,//图片尺寸
-                            child: Image.network("https://s3-alpha-sig.figma.com/img/4a92/272c/15495ba4b99f0c27386610b0fb8af758?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=j3j6eWQEj56i-AS6o9HDN0GG9mMKTsfOe4pZH08fLvHvAi~Wcpm8VRO-93vlIChrYffVEpQbKG9xm2wWI7EwtcWfSoPxdjrVmCKD5thR2oDVwk3YfSvqWLltzuYO6CXgcPqHxhmvtODVNnQstDLGT7iXtlJJ7-8F5mFUnXFTDQI035DX2BGvuCoL2ad8rhQhy8Y6lA36z1a3TTbwF1cXE216kD6d4WTXWx6jakwSaeW9~1gNZipuD~PIeRkRxmYImDaY2Z8lYCFJjlbC138s6gthr7DhhjznTTT99-n-4XHRJP6XAWMRjHFtF-oKMGUWCGyyPNEMKAafeEm9AUY~uQ__",
+                            child: Image.asset("assets/images/twt.png",
                               fit: BoxFit.cover,
                               errorBuilder: (_, __, ___) => Container( // 错误处理
                                 color: Colors.grey[200],

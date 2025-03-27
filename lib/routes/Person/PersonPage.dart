@@ -39,14 +39,7 @@ class _PersonPageState extends State<PersonPage> {
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.grey
-                        // image: DecorationImage(
-                        //   fit: BoxFit.cover,
-                        //   image: AssetImage("images/twt.png"),
-                        //   onError: (_, __) => Container(
-                        //     color: Colors.grey,
-                        //     child: const Icon(Icons.broken_image),
-                        //   ),
-                        // ),
+
                       ),
                     ),
                       const SizedBox(width: 16),

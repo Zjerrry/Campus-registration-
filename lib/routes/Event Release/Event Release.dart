@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_fist/routes/ClubMainPage.dart';
+import 'package:test_fist/routes/ViewClub/ClubMainPage.dart';
 import 'addLinkClub.dart';
 import 'package:test_fist/widgets/ImagePicker.dart';
 Set<String> addedClub = {};
@@ -36,7 +36,8 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("发布新活动",style: TextStyle(
+          leading: null,
+          title:  Text("发布新活动",style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700
           ),),
@@ -236,7 +237,7 @@ Widget _buildClubTag(BuildContext context,int index)
       onPressed: () {
         Navigator.push(context,
           MaterialPageRoute(builder: (context)=> ClubMainPage(
-            clubname: addClubList[index],
+            ClubName: addClubList[index],
           ))
        );
       },

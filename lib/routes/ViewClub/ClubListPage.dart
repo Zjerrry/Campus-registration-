@@ -4,14 +4,14 @@ import 'package:test_fist/widgets/ClubSearch.dart';
 import 'package:test_fist/widgets/Tool.dart';
 
 
-class Clublistpage extends StatefulWidget {
-  const Clublistpage({super.key});
+class ClubListPage extends StatefulWidget {
+  const ClubListPage({super.key});
 
   @override
-  State<Clublistpage> createState() => _ClublistpageState();
+  State<ClubListPage> createState() => _ClubListPageState();
 }
 
-class _ClublistpageState extends State<Clublistpage> {
+class _ClubListPageState extends State<ClubListPage> {
   static String SearchValue = "";
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _ClublistpageState extends State<Clublistpage> {
             },
         ),
       ),
-      body: const ClubList_Body()
+      body: ClubList_Body()
     );
   }
 }
@@ -43,7 +43,7 @@ class ClubList_Body extends StatefulWidget {
 }
 
 class _ClubList_BodyState extends State<ClubList_Body> {
-  List dataList = _ClublistpageState.SearchValue != "" ? searchClub:allClub;
+  List dataList = _ClubListPageState.SearchValue != "" ? searchClub:allClub;
   @override
   Widget build(BuildContext context) {//改为瀑布流式布局，待解决
     return GridView.builder(
@@ -51,7 +51,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
             crossAxisCount: 2,
             childAspectRatio: 0.8
         ),
-        itemCount: _ClublistpageState.SearchValue.isNotEmpty ? searchClub.length:allClub.length,
+        itemCount: _ClubListPageState.SearchValue.isNotEmpty ? searchClub.length:allClub.length,
         itemBuilder: (context,index){
           return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -75,7 +75,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 builder: (context)
                                 {
                                   return ClubMainPage(
-                                    clubname:_ClublistpageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index] ,
+                                    ClubName:_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index] ,
                                   );
                                 })
                         );
@@ -89,7 +89,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 borderRadius:  const BorderRadius.vertical(top: Radius.circular(20)),
                                 child: AspectRatio(
                                     aspectRatio: 1,//图片尺寸
-                                  child: Image.asset("images/twt.png",
+                                  child: Image.asset("assets/images/twt.png",
                                       fit: BoxFit.cover,
                                       errorBuilder: (_, __, ___) => Container( // 错误处理
                                         color: Colors.grey[200],
@@ -100,7 +100,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                               ),
                               Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
-                                child: Text(truncateText(_ClublistpageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
+                                child: Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 class ClubMainPage extends StatefulWidget {
-  const ClubMainPage({super.key,required this.clubname});
+  const ClubMainPage({super.key,required this.ClubName});
 
-  final String clubname;
+  final String ClubName;
   @override
   State<ClubMainPage> createState() => _ClubMainPageState();
 }
@@ -39,7 +39,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
         slivers: [
           //------------------------------------------------------------------------
           //社团信息
-          Club_Information(context,widget.clubname),
+          Club_Information(context,widget.ClubName),
           SliverList(
               delegate: SliverChildBuilderDelegate((BuildContext context,index)
               {
@@ -71,12 +71,19 @@ Widget Club_Information(context,ClubName)
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.asset("images/twt.png",
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container( // 错误处理
-                    color: Colors.grey[200],
-                    child: const Icon(Icons.broken_image),
-                  ),), //社团头像
+                Padding(
+                    padding: EdgeInsets.only(right: 20),
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey
+
+                    ),
+                  ),
+                ),
+                //社团头像
                 Flexible(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,

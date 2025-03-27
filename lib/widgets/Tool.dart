@@ -67,3 +67,20 @@ List build_next(String Searchvalue)
   }
   return next;
 }
+
+//获取当前时间
+class getTime
+{
+  DateTime nowTime = DateTime.now();
+
+  int getTitleTime()
+  {
+    if(nowTime.hour >= 6 && nowTime.hour <= 9)  { return 0;}
+    else if(nowTime.hour > 9 && nowTime.hour <= 12)  {return 1;}
+    else if(nowTime.hour > 12 && nowTime.hour <= 18) {return 2;}
+    else if(nowTime.hour > 18 && nowTime.hour <= 11) {return 3;}
+    else {return 4;}
+
+  }
+
+}

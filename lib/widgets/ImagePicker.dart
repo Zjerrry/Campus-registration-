@@ -59,10 +59,16 @@ class _ImagePickerState extends State<ImagePicker> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         GestureDetector(
           child: Container(
+            width: 50,
+            height: 50,
             color: Colors.grey,
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(20),
+            // ),
             child: widget.child,
           ),
           onTap:()
