@@ -49,7 +49,10 @@ class _ImagePickerState extends State<ImagePicker> {
     final hasPermission = await _requestPhotoPermission();
     if (!hasPermission) return;
 
-    final List<AssetEntity>? result = await AssetPicker.pickAssets(context);
+    List<AssetEntity>? result = await AssetPicker.pickAssets(
+      context,
+      pickerConfig: const AssetPickerConfig(maxAssets: 1), // 最多选择9张
+    );
 
     if (result != null) {
       setState(() => _selectedAssets = result);
@@ -57,27 +60,48 @@ class _ImagePickerState extends State<ImagePicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-          child: Container(
-            width: 50,
-            height: 50,
-            color: Colors.grey,
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.circular(20),
-            // ),
-            child: widget.child,
-          ),
-          onTap:()
-          {
-            _pickImages();
-          },
+      Widget build(BuildContext context) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+        ConstrainedBox( // 添加约束防止溢出
+        constraints: const BoxConstraints(
+        maxWidth: 50, // 最大宽度限制
+          maxHeight: 50, // 最大高度限制
         ),
-      ],
+            child: GestureDetector(
+            onTap: _pickImages,
+                child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(20),),
+                child: _buildChildWidget(), // 重构子组件构建逻辑
+                  ),
+                ),
+              ),
+          ],
+        );
+      }
+  Widget _buildChildWidget() {
+    if (_selectedAssets.isEmpty) {
+      return widget.child; // 空状态处理
+    }
+
+    return ClipRRect( // 添加圆角裁剪
+      borderRadius: BorderRadius.circular(20),
+      child: Image(
+        image: AssetEntityImageProvider(
+          _selectedAssets[0],
+          isOriginal: false,
+        ),
+        fit: BoxFit.cover,
+        width: 50,  // 显式指定尺寸
+        height: 50,
+      ),
     );
   }
+
 }
 

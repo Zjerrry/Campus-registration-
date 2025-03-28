@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_fist/routes/Settings/settings.dart';
+import 'package:test_fist/routes/Settings/PersonSettings.dart';
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
 
@@ -22,7 +22,7 @@ class _PersonPageState extends State<PersonPage> {
               Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SettingsPage(),
+                builder: (context) => PersonSettings(),
               ),
             );
             },

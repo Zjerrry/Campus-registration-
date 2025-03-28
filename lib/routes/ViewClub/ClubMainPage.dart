@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_fist/routes/Settings/ClubSettings.dart';
 class ClubMainPage extends StatefulWidget {
   const ClubMainPage({super.key,required this.ClubName});
 
@@ -29,9 +30,14 @@ class _ClubMainPageState extends State<ClubMainPage> {
         actions: [
           IconButton(
               onPressed: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ClubSettings(),
+                  ),
+                );
               },
-              icon: Icon(Icons.settings,size: 40,)
+              icon: const Icon(Icons.settings,size: 40,)
           )
         ],
       ),

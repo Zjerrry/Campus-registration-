@@ -29,21 +29,8 @@ class _HomePageState extends State<HomePage> {
         selectedIndex: _selectedIndex,
         onSelected: _onItemTapped,
       ),//学生或社团 person&event&home
-
-      floatingActionButton: FloatingActionButton(
-        onPressed:  ()
-        {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context){
-                return const EventReleasePage();
-              })
-          );
-        },
-        child: Icon(Icons.add,),
-      ),
-      body: _Body(_selectedIndex),//页面
-
+        body: _Body(_selectedIndex),//页面
+      floatingActionButton: _selectedIndex == 0?FloatBotton(context):null
     );
   }
 }
@@ -65,7 +52,7 @@ class _BottomBar extends StatelessWidget {
       // 背景颜色
       //backgroundColor: Colors.black,
       // 选中图标主题
-      selectedIconTheme: IconThemeData(
+      selectedIconTheme: const IconThemeData(
         // 图标颜色
         color: Colors.blue,
         // 图标大小
@@ -74,7 +61,7 @@ class _BottomBar extends StatelessWidget {
         opacity: 1.0,
       ),
       // 未选中图标主题
-      unselectedIconTheme: IconThemeData(
+      unselectedIconTheme: const IconThemeData(
         color: Colors.grey,
         size: 24,
         opacity: 0.5,
@@ -101,4 +88,24 @@ Widget _Body(int currentIndex) {
     const PersonPage()
   ];
   return pages[currentIndex];
+}
+
+Widget FloatBotton(BuildContext context)
+{
+  return FloatingActionButton(
+    onPressed:  ()
+    {
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context){
+            return const EventReleasePage();
+          })
+      );
+    },
+    backgroundColor: Colors.blue,
+    shape: const CircleBorder(),
+    child: const Icon(Icons.add,color: Colors.white,),
+  );
+
+
 }

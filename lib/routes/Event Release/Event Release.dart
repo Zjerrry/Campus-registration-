@@ -36,7 +36,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: null,
+          automaticallyImplyLeading: false,
           title:  Text("发布新活动",style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700
@@ -48,16 +48,11 @@ class _BodyState extends State<_Body> {
             Body(context),
             //--------------图片上传---------------------
 
-            const SliverPadding(padding: EdgeInsets.only(left: 100,bottom: 20),
+            const SliverPadding(padding: EdgeInsets.only(left: 50,bottom: 20),
               sliver: SliverToBoxAdapter(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                      ImagePicker(
-                        child: Icon(Icons.photo_outlined),
-                      ),
-                  ],
-                )
+                child: ImagePicker(
+                  child: Icon(Icons.photo_outlined),
+                ),
               ),
             ),
 
