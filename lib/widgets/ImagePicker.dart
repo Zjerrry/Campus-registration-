@@ -66,18 +66,18 @@ class _ImagePickerState extends State<ImagePicker> {
           children: [
         ConstrainedBox( // 添加约束防止溢出
         constraints: const BoxConstraints(
-        maxWidth: 50, // 最大宽度限制
-          maxHeight: 50, // 最大高度限制
+        maxWidth: 100, // 宽度限制
+          maxHeight: 100, // 高度限制
         ),
             child: GestureDetector(
             onTap: _pickImages,
                 child: Container(
-                width: 50,
-                height: 50,
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
-                color: Colors.grey,
+                border: Border.all(color: Colors.grey,width: 1),
                 borderRadius: BorderRadius.circular(20),),
-                child: _buildChildWidget(), // 重构子组件构建逻辑
+                child: _buildChildWidget(), // 传入重构
                   ),
                 ),
               ),
@@ -97,8 +97,8 @@ class _ImagePickerState extends State<ImagePicker> {
           isOriginal: false,
         ),
         fit: BoxFit.cover,
-        width: 50,  // 显式指定尺寸
-        height: 50,
+        width: 100,  // 显式指定尺寸
+        height: 100,
       ),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'Tool.dart';
+import 'package:test_fist/commons/Global.dart';
 
 //导入的社团列表
-List allClub = ["天外天工作室","青年志愿者协会XXXXXXXXXXXXXXXXXXX","学生会","天津大学校园建设发展协会（北洋讲解队）","abcdef","abc"];//全部社团列表
+List allClub = [];//全部社团列表
 List searchClub = [];//筛选后的社团列表
 
 
@@ -26,6 +27,7 @@ class _TopSearchBarState extends State<TopSearchBar> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp){
       //_focusNode.requestFocus();
+      allClub = GlobalInformation.AllClub;
     });
   }
 

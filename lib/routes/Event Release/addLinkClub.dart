@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/ClubSearch.dart';
 import 'package:test_fist/widgets/Tool.dart';
+import 'package:test_fist/commons/Global.dart';
+
+
 Set<String> Club_added={};
 List<bool> has_add=[];
 class addLinkClub extends StatefulWidget {
@@ -26,10 +29,11 @@ class _addLinkClubState extends State<addLinkClub> {
         child: ElevatedButton(
           onPressed: (){
             setState(() {
-              print("Club:$Club_added");
-              Navigator.pop(context,Club_added);
+              Navigator.pop(context);
             });
+            setState(() {
 
+            });
           },
           child: Text("完成社团添加",
             style: TextStyle(
@@ -93,7 +97,7 @@ class _addLinkClubState extends State<addLinkClub> {
                               blurRadius: 5
                           ),]
                       ),
-
+                    //-----------------------------------------------------
                     child: Row(
                       children: [
                         ClipRRect(
@@ -109,6 +113,7 @@ class _addLinkClubState extends State<addLinkClub> {
                             ),
                           ),
                         ),
+                        //--------------------文字---------------------------
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -144,28 +149,41 @@ class _addLinkClubState extends State<addLinkClub> {
                             ),
                           ),
                         ),
-                        //添加选项
-                        Padding(padding: EdgeInsets.all(20),
+                        //-------------------------------添加关联社团-------------------------------
+                        Padding(padding: const EdgeInsets.all(20),
                         child: ElevatedButton(
                             onPressed: (){
                               setState(() {
-                                if(!Club_added.contains(SearchValue.isNotEmpty ? searchClub[index]:allClub[index]))
+                                if(!GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
+                                    searchClub[index]:allClub[index]))
                                   {
-                                    Club_added.add(SearchValue.isNotEmpty ? searchClub[index]:allClub[index]);
+                                    GlobalInformation().addLinkingClub(SearchValue.isNotEmpty ?
+                                    searchClub[index]:allClub[index]);
                                   }
                                 else
                                   {
-                                    Club_added.remove(SearchValue.isNotEmpty ? searchClub[index]:allClub[index]);
+                                    GlobalInformation().removeLinkingClub(SearchValue.isNotEmpty ?
+                                    searchClub[index]:allClub[index]);
+
                                   }
                               });
                             },
-                            child: Text(Club_added.contains(SearchValue.isNotEmpty ? searchClub[index]:allClub[index])?"已添加":"待添加",
-                            style: TextStyle(
-                              color: Colors.black
-                            ),),
+
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Club_added.contains(SearchValue.isNotEmpty ? searchClub[index]:allClub[index])?Colors.blue[100]:Colors.white60
+                            backgroundColor: GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
+                            searchClub[index] :
+                            allClub[index]) ?
+                            Colors.blue[100] :
+                            Colors.white60
                           ),
+                          child: Text(GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
+                          searchClub[index] :
+                          allClub[index]) ?
+                            "已添加" :
+                            "待添加",
+                            style: const TextStyle(
+                                color: Colors.black
+                            ),),
                          ),
                         )
 
