@@ -45,7 +45,8 @@ class _PersonSettingsState extends State<PersonSettings> {
             ),
             child: Column(
               children: [
-                buildButton('头像', _onProfilePressed),
+                //buildButton('头像', _onProfilePressed),
+                PreButton(_onProfilePressed),
                 spearate(),
                 buildButton('用户名', _onProfilePressed),
                 spearate(),
@@ -69,9 +70,11 @@ class _PersonSettingsState extends State<PersonSettings> {
             ),
             child: Column(
               children: [
-                buildButton('电话', _onProfilePressed),
+                //buildButton('电话', _onProfilePressed),
+                PhoneEmailButton("电话", _onProfilePressed, Icon(Icons.phone)),
                 spearate(),
-                buildButton('邮箱', _onProfilePressed),
+                //buildButton('邮箱', _onProfilePressed),
+                PhoneEmailButton("邮箱", _onProfilePressed, Icon(Icons.email_outlined)),
               ],
             ),
           ),
