@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/Tool.dart';
 import 'package:test_fist/widgets/ClubSearch.dart';
 import '../Log/LogPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EventView extends StatefulWidget {
   const EventView({super.key});
@@ -51,18 +52,18 @@ class _EventViewState extends State<EventView> {
           headerSliverBuilder: (BuildContext context,bool inner){
             return [
               SliverToBoxAdapter(
-                child:Padding(padding: EdgeInsets.symmetric(horizontal: 35),
+                child:Padding(padding: EdgeInsets.symmetric(horizontal: 35.w),
                   child: Container(
-                    height: 50,
+                    height: 50.h,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         color: Colors.blue[50]
                     ),
                     child: Padding(padding: EdgeInsets.only(top: 8,left: 15),
                       child: Text("${nowTime},XXX",
                         style: TextStyle(
                             color: Colors.blue[800],
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold
                         ),
                       ),
@@ -85,7 +86,7 @@ Widget TopImageSliver(BuildContext context)
   return SliverToBoxAdapter(
     child: Padding(padding: EdgeInsets.symmetric(horizontal: 15),
       child: Container(
-            height: 200,
+            height: 200.h,
             child: Swiper(
                 itemCount: 5,
                 loop: true,
@@ -94,10 +95,10 @@ Widget TopImageSliver(BuildContext context)
                 autoplayDelay:5000,
                 itemBuilder: (BuildContext context,int index)
                 {
-                  return Padding(padding: EdgeInsets.all(20),
+                  return Padding(padding: EdgeInsets.all(20.r),
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.r),
                             color: Colors.grey[300]
                         ),
                         child: Text(""),
@@ -125,10 +126,10 @@ Widget EventViewList(BuildContext context)
                 children: [
                   //--------------------------------------
                   // 发帖人信息
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 16),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Container(
-                      width: 50,
-                      height: 50,
+                      width: 50.w,
+                      height: 50.h,
                       decoration:  BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.grey[350]
@@ -145,7 +146,7 @@ Widget EventViewList(BuildContext context)
                           Text(
                             "用户$index",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold
                             ),
                             maxLines: 1,
@@ -155,7 +156,7 @@ Widget EventViewList(BuildContext context)
                             "20232420${index%9}",
                             style: TextStyle(
                               color: Colors.grey[600],
-                              fontSize: 17,
+                              fontSize: 17.sp,
                             ),
                           ),
                         ]),
@@ -165,7 +166,7 @@ Widget EventViewList(BuildContext context)
               ),
               //-----------------------------------------------------------
               //--------------活动内容---------------------------------------
-              Padding(padding: EdgeInsets.all(20),
+              Padding(padding: EdgeInsets.all(20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -180,7 +181,7 @@ Widget EventViewList(BuildContext context)
                     //----------------内容---------------------------
                     Text(
                       "内容${index}XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14.sp),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -189,7 +190,7 @@ Widget EventViewList(BuildContext context)
               ),
               //-----------------------------------------------------------------------
               //--------------------功能键----------------------------------------------
-              Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Row(
                 children: [
                   //评论

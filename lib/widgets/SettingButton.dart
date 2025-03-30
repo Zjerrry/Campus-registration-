@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget spearate()
 {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20),
+    padding:  EdgeInsets.symmetric(horizontal: 20.w),
     child: Container(
       height: 1,
       color: Colors.grey[350],
@@ -13,17 +14,17 @@ Widget spearate()
 Widget buildButton(String title,VoidCallback onPressed)
 {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 20),
+    padding: EdgeInsets.symmetric(vertical: 20.r),
     child: Container(
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white
       ),
-      child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+      child:Padding(padding:  EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            Text(title,style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
             IconButton(onPressed: onPressed,
                 icon: const Icon(Icons.arrow_forward_ios)
             )
@@ -37,17 +38,17 @@ Widget buildButton(String title,VoidCallback onPressed)
 Widget PreButton(VoidCallback onPressed)
 {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 20),
+    padding: EdgeInsets.symmetric(vertical: 20.r),
     child: Container(
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white
       ),
-      child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+      child:Padding(padding:  EdgeInsets.symmetric(horizontal: 20.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("头像",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            Text("头像",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             Padding(padding: EdgeInsets.only(left: 220),
               child: Container(
                 height: 50,
@@ -68,13 +69,13 @@ Widget PreButton(VoidCallback onPressed)
 Widget PhoneEmailButton(String title,VoidCallback onPressed,Icon theIcon)
 {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 20),
+    padding: EdgeInsets.symmetric(vertical: 20.h),
     child: Container(
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           color: Colors.white
       ),
-      child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+      child:Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

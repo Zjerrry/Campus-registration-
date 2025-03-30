@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 //注册页面
 class LogonRoute extends StatefulWidget {
   const LogonRoute({super.key});
@@ -21,7 +21,7 @@ class _LogonRouteState extends State<LogonRoute> {
     return Scaffold(
       appBar: AppBar(title: Text("注册"),),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0.w),
           child: Form(
             key: _fromKey,
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -66,12 +66,12 @@ class _LogonRouteState extends State<LogonRoute> {
                     },
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25),
+                      padding: EdgeInsets.only(top: 25.h),
                       child: ConstrainedBox(
-                          constraints: BoxConstraints.expand(height: 55.0),
+                          constraints: BoxConstraints.expand(height: 55.0.h),
                           child: ElevatedButton(
                               onPressed: _onLogon,
-                              child: Text("注册")),),
+                              child: Text("注册", style: TextStyle(fontSize: 18.sp))),),
                   )
                 ],
               )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/Settings/PersonSettings.dart';
+import 'package:test_fist/routes/Notification/NotificationCenter.dart';
 import 'MyCollection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +18,14 @@ class _PersonPageState extends State<PersonPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => NotificationCenter(),
+              ),
+              );
+            },
             icon: const Icon(Icons.mail_outline, size: 30),
           ),
           IconButton(

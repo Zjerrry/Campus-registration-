@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/Settings/ClubSettings.dart';
 import 'package:test_fist/commons/Global.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClubMainPage extends StatefulWidget {
   const ClubMainPage({super.key,required this.ClubName});
@@ -23,8 +24,8 @@ class _ClubMainPageState extends State<ClubMainPage> {
                 decoration:  BoxDecoration(
                   color: Colors.grey[400],
                 ),
-                child: const Padding(
-                  padding:  EdgeInsets.all(8.0),
+                child: Padding(
+                  padding:  EdgeInsets.all(8.0.r),
                   child: Text("社团主页"),
                 ),
               ),
@@ -56,7 +57,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
                     (BuildContext context,index)
               {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.r),
                   child: ListTile(
                     title: Text("$index"),
                     onTap: (){},
@@ -92,15 +93,15 @@ class _ClubInformationState extends State<ClubInformation> {
             //----------------------------------------------------------------------------
             //社团信息部分
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(20.0.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(right: 20),
                     child: Container(
-                      width: 80,
-                      height: 80,
+                      width: 80.w,
+                      height: 80.h,
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.grey
@@ -115,15 +116,15 @@ class _ClubInformationState extends State<ClubInformation> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(widget.clubname,
-                          style: const TextStyle(
+                          style:TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 25
+                              fontSize: 25.sp
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),//社团名称
                         Text("类型:  育人实践基地",style: TextStyle(
-                            color: Colors.grey[600],fontSize: 17
+                            color: Colors.grey[600],fontSize: 17.sp
                         ),)//社团类型
                       ],//会溢出屏幕
                     ),
@@ -148,20 +149,20 @@ class _ClubInformationState extends State<ClubInformation> {
             //社团简介部分
             //---------------------------------------------------------------
             ConstrainedBox(
-              constraints:const  BoxConstraints(
-                  minHeight: 100
+              constraints:BoxConstraints(
+                  minHeight: 100.h
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: EdgeInsets.symmetric(horizontal: 40.0.w),
                 child:  Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.only(right: 20,top: 3),
                       child: Text("社团简介:",style: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Colors.black87,
-                          fontSize: 16
+                          fontSize: 16.sp
                       )
                       ),
                     ),
@@ -171,7 +172,7 @@ class _ClubInformationState extends State<ClubInformation> {
                         style: TextStyle(
                             color: Colors.grey[600],
                             height: 1.5,
-                            fontSize: 14
+                            fontSize: 14.sp
                         ),
                       ),
                     )
@@ -180,11 +181,11 @@ class _ClubInformationState extends State<ClubInformation> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
               child: Text("活动一览",style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 25,
+                  fontSize: 25.sp,
                   color: Colors.grey
               ),),
             )

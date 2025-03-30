@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/ClubSearch.dart';
 import 'package:test_fist/widgets/Tool.dart';
 import 'package:test_fist/commons/Global.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 Set<String> Club_added={};
@@ -25,7 +26,7 @@ class _addLinkClubState extends State<addLinkClub> {
     return Scaffold(
       backgroundColor: Colors.grey[350],
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 100),
+        padding: EdgeInsets.symmetric(horizontal: 120.w),
         child: ElevatedButton(
           onPressed: (){
             setState(() {
@@ -35,13 +36,14 @@ class _addLinkClubState extends State<addLinkClub> {
 
             });
           },
-          child: Text("完成社团添加",
+          child: Text("完成添加社团",
             style: TextStyle(
-                color: Colors.black
+                color: Colors.black,
+                fontSize: 18.sp
             ),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
+            backgroundColor: Color(0xFF6CB2F3),
           ),
         ),
       ),
@@ -50,13 +52,14 @@ class _addLinkClubState extends State<addLinkClub> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 10.h,
                 ),
-                const Padding(padding: EdgeInsets.symmetric(vertical: 50),
+                Padding(padding: EdgeInsets.symmetric(vertical: 45.h),
                 child: Text("添加关联社团",
                   style: TextStyle(color: Colors.black,
-                      fontSize: 30
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
                 ),
@@ -74,13 +77,13 @@ class _addLinkClubState extends State<addLinkClub> {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(40.0),
+            padding:  EdgeInsets.all(30.0.w),
             sliver: SliverGrid(
 
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                mainAxisSpacing: 40.0,
-                crossAxisSpacing: 20.0,
+                mainAxisSpacing: 22.0.h,
+                crossAxisSpacing: 10.0.h,
                 childAspectRatio: 4.0,
               ),
               delegate: SliverChildBuilderDelegate(
@@ -90,18 +93,19 @@ class _addLinkClubState extends State<addLinkClub> {
                     alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
+                          borderRadius: BorderRadius.circular(30.r),
                           boxShadow: [BoxShadow(
                               color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 5
+                              spreadRadius: 2.h,
+                              blurRadius: 5.h
                           ),]
                       ),
                     //-----------------------------------------------------
                     child: Row(
                       children: [
                         ClipRRect(
-                          borderRadius:  const BorderRadius.only( topLeft:Radius.circular(40),bottomLeft: Radius.circular(40)),
+                          borderRadius:  const BorderRadius.only(
+                              topLeft:Radius.circular(30),bottomLeft: Radius.circular(30)),
                           child: AspectRatio(
                             aspectRatio: 1,//图片尺寸
                             child: Image.asset("assets/images/twt.png",
@@ -116,7 +120,7 @@ class _addLinkClubState extends State<addLinkClub> {
                         //--------------------文字---------------------------
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                            padding:  EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,25 +128,29 @@ class _addLinkClubState extends State<addLinkClub> {
                                 Text(
                                   //截取固定长度的文字
                                   truncateText(SearchValue.isNotEmpty ? searchClub[index] : allClub[index], 10),
-                                  style: const TextStyle(
-                                      fontSize: 16,
+                                  style:  TextStyle(
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w700,
-                                      height: 1.2
+                                      height: 1.5.h
                                   ),
                                   //maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                const SizedBox(height: 6),
+                                 SizedBox(height: 6.h),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                                   decoration: BoxDecoration(
-                                    color: Colors.orangeAccent,
-                                    borderRadius: BorderRadius.circular(20),
+                                    color: Color(0xFFF1CF8B),
+                                    borderRadius: BorderRadius.circular(30.r),
                                   ),
-                                  child: const Text(
+                                  child:  Text(
                                     "育人实践基地",
                                     //style: _kLabelStyle,
-                                    strutStyle: StrutStyle(height: 1),
+                                    strutStyle: StrutStyle(height: 1.h),
+                                      style: TextStyle(color: Colors.black,
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.bold
+                                      ),
                                   ),
                                 ),
                               ],
@@ -150,7 +158,7 @@ class _addLinkClubState extends State<addLinkClub> {
                           ),
                         ),
                         //-------------------------------添加关联社团-------------------------------
-                        Padding(padding: const EdgeInsets.all(20),
+                        Padding(padding:  EdgeInsets.all(20.w),
                         child: ElevatedButton(
                             onPressed: (){
                               setState(() {
@@ -173,7 +181,7 @@ class _addLinkClubState extends State<addLinkClub> {
                             backgroundColor: GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
                             searchClub[index] :
                             allClub[index]) ?
-                            Colors.blue[100] :
+                            Color(0xFF6CB2F3) :
                             Colors.white60
                           ),
                           child: Text(GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?

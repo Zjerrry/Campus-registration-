@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'ClubMainPage.dart';
 import 'package:test_fist/widgets/ClubSearch.dart';
 import 'package:test_fist/widgets/Tool.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClubListPage extends StatefulWidget {
   const ClubListPage({super.key});
@@ -54,12 +54,12 @@ class _ClubList_BodyState extends State<ClubList_Body> {
         itemCount: _ClubListPageState.SearchValue.isNotEmpty ? searchClub.length:allClub.length,
         itemBuilder: (context,index){
           return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r),
               child:  Container(
                     //alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       boxShadow: [BoxShadow(
                         color: Colors.grey.withOpacity(0.2),
                         spreadRadius: 2,
@@ -67,7 +67,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                       ),]
                     ),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       onTap: (){
                         Navigator.push(
                             context,
@@ -99,9 +99,9 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 ),
                               ),
                               Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                                  padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 8.h),
                                 child: Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                     height: 1.2

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/SettingButton.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonSettings extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class _PersonSettingsState extends State<PersonSettings> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 90),
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 90.w),
             child: Text('个人信息更改',style: TextStyle(
               fontWeight: FontWeight.bold
               ),
@@ -25,7 +26,7 @@ class _PersonSettingsState extends State<PersonSettings> {
         //leading: BackButton(), // 返回
       ),
       backgroundColor: Colors.grey[200],
-      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Body(context),
       ),
     );
@@ -37,10 +38,10 @@ class _PersonSettingsState extends State<PersonSettings> {
       children: [
         //---------------------个人信息---------------------
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15.h),
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 color: Colors.white
             ),
             child: Column(
@@ -62,10 +63,10 @@ class _PersonSettingsState extends State<PersonSettings> {
         //-------------------------------------------------
         //----------------------电话邮箱--------------------
         Padding(
-          padding: EdgeInsets.only(bottom: 15),
+          padding: EdgeInsets.only(bottom: 15.h),
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 color: Colors.white
             ),
             child: Column(
@@ -83,7 +84,7 @@ class _PersonSettingsState extends State<PersonSettings> {
         //--------------------注销账号------------------------
         Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               color: Colors.white
           ),
           child: Column(

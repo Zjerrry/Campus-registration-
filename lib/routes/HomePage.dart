@@ -3,7 +3,7 @@ import 'package:test_fist/routes/ViewClub/ClubListPage.dart';
 import 'package:test_fist/routes/Event%20Release/Event%20Release.dart';
 import 'ViewEvent/EventView.dart';
 import 'package:test_fist/routes/Person/PersonPage.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

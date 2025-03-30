@@ -16,13 +16,14 @@ class MyApp extends StatelessWidget {
       designSize: const Size(412,917),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_,child)=>MaterialApp(
+      builder: (context,child)=>MaterialApp(
+        //debugShowCheckedModeBanner: false,
         title: '线上报名',
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true
         ),
-        home: child,
+        home: child
       ),
       child: const HomePage(),
 

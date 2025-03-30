@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/SettingButton.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class ClubSettings extends StatefulWidget {
@@ -18,8 +19,8 @@ class _ClubSettingsState extends State<ClubSettings> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
-        title: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 90),
+        title:  Padding(
+            padding: EdgeInsets.symmetric(horizontal: 90.w),
             child: Text('社团信息更改',style: TextStyle(
                 fontWeight: FontWeight.bold
             ),
@@ -27,7 +28,7 @@ class _ClubSettingsState extends State<ClubSettings> {
         ),
       ),
       backgroundColor: Colors.grey[200],
-      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: Padding(padding:  EdgeInsets.symmetric(horizontal: 20.w),
         child: Body(context),
       ),
     );
@@ -39,10 +40,10 @@ class _ClubSettingsState extends State<ClubSettings> {
       children: [
         //---------------------社团信息---------------------
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15.h),
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 color: Colors.white
             ),
             child: Column(
