@@ -4,6 +4,8 @@ import 'addLinkClub.dart';
 import 'package:test_fist/widgets/ImagePicker.dart';
 import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:date_picker_plus/date_picker_plus.dart';
+import 'addEventTime.dart';
 
 
 class EventReleasePage extends StatefulWidget {
@@ -68,6 +70,7 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime? _selectedTime;
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -108,18 +111,29 @@ class _BodyState extends State<_Body> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //========================活动时间====================================
-                        TextFormField(
-                          controller: _timeController,
-                            style: TextStyle(fontSize: 12.sp),
-                          decoration: InputDecoration(
-                              hintText: "添加活动时间",
-                              hintStyle: TextStyle(fontSize: 12.sp),
-                              border: InputBorder.none,
-                              prefixIcon: Padding(padding: EdgeInsets.symmetric(vertical: 10.h),
-                                child: Icon(Icons.access_time_rounded,size: 24),
-                              )
-                          ),
-                            onChanged: (value)=> GlobalInformation().updateDraft('time', value)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(padding: EdgeInsets.only(left: 12.w),
+                              child: Icon(Icons.access_time_rounded,size: 24,),
+                            ),
+                            TextButton(
+                                onPressed: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => addEventTime(),
+                                    ),
+                                  );
+                                  setState(() {});
+                                },
+                                child: Text(
+                                  "添加活动时间",
+                                  style: TextStyle(fontSize: 12.sp,
+                                      color: Colors.blue),
+                                )
+                            ),
+                                  ],
                         ),
                         //===========================活动地点 ==============================
                         TextFormField(
@@ -153,7 +167,7 @@ class _BodyState extends State<_Body> {
                                 setState(() {});
                               },
                               child:  Text("添加关联社团",
-                                style: TextStyle(fontSize: 12.sp),),
+                                style: TextStyle(fontSize: 12.sp, color: Colors.blue),),
                             ),
                           ],
                         ),

@@ -41,10 +41,11 @@ dependencies:
   wechat_assets_picker: ^9.5.0
   permission_handler: ^11.4.0
   card_swiper: ^3.0.1
+  flutter_screenutil: ^5.9.3
+  date_picker_plus: ^3.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_screenutil: ^5.9.3
 
 
 
@@ -67,8 +68,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/twt.png
+assets:
+  - assets/images/twt.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

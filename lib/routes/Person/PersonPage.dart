@@ -71,7 +71,8 @@ class _PersonPageState extends State<PersonPage> {
                             Text(
                               "用户名",
                               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,
+                                fontSize:20.sp,),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -79,7 +80,7 @@ class _PersonPageState extends State<PersonPage> {
                               "2023234222",
                               style: TextStyle(
                                 color: Colors.grey[600],
-                                //fontSize: 17,
+                                fontSize: 17.sp,
                               ),
                             ),
                           ]),

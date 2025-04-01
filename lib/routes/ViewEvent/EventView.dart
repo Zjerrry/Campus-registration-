@@ -174,7 +174,8 @@ Widget EventViewList(BuildContext context)
                     Text(
                       "标题$index",
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

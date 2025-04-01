@@ -48,7 +48,7 @@ Widget PreButton(VoidCallback onPressed)
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("头像",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            Text("头像",style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
             Padding(padding: EdgeInsets.only(left: 220),
               child: Container(
                 height: 50,
@@ -80,9 +80,9 @@ Widget PhoneEmailButton(String title,VoidCallback onPressed,Icon theIcon)
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             theIcon,
-            Text(title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            Text(title,style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
             SizedBox(width: 150,),
-            Text("待填写",style: TextStyle(fontSize: 20,color: Colors.grey[400]),),
+            Text("待填写",style: TextStyle(fontSize: 20.sp,color: Colors.grey[400]),),
             IconButton(onPressed: onPressed,
                 icon: const Icon(Icons.arrow_forward_ios)
             )

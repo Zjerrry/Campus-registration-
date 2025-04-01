@@ -102,7 +102,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                   padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 8.h),
                                 child: Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w500,
                                     height: 1.2
                                   ),
