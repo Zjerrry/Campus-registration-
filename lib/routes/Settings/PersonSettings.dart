@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/SettingButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class PersonSettings extends StatefulWidget {
   @override
@@ -72,10 +73,10 @@ class _PersonSettingsState extends State<PersonSettings> {
             child: Column(
               children: [
                 //buildButton('电话', _onProfilePressed),
-                PhoneEmailButton("电话", _onProfilePressed, Icon(Icons.phone)),
+                PhoneEmailButton("电话", _onProfilePressed, Icon(MyIcons.call,size: 24,)),
                 spearate(),
                 //buildButton('邮箱', _onProfilePressed),
-                PhoneEmailButton("邮箱", _onProfilePressed, Icon(Icons.email_outlined)),
+                PhoneEmailButton("邮箱", _onProfilePressed, Icon(Icons.mail_outline,size: 24,)),
               ],
             ),
           ),

@@ -3,7 +3,8 @@ import 'package:test_fist/routes/ViewClub/ClubListPage.dart';
 import 'package:test_fist/routes/Event%20Release/Event%20Release.dart';
 import 'ViewEvent/EventView.dart';
 import 'package:test_fist/routes/Person/PersonPage.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_fist/widgets/my_icons_icons.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -63,13 +64,13 @@ class _BottomBar extends StatelessWidget {
       // 未选中图标主题
       unselectedIconTheme: const IconThemeData(
         color: Colors.grey,
-        size: 24,
+        size: 32,
         opacity: 0.5,
       ),
       items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页',),
-        BottomNavigationBarItem(icon: Icon(Icons.event), label: '社团',),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: '个人',),
+        BottomNavigationBarItem(icon: Icon(MyIcons.home_2),label: ''),
+        BottomNavigationBarItem(icon: Icon(MyIcons.profile_2user),label: ''),
+        BottomNavigationBarItem(icon: Icon(MyIcons.user),label: ''),
       ],
       onTap: (index) =>
         onSelected(index)

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_fist/routes/Settings/ClubSettings.dart';
 import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class ClubMainPage extends StatefulWidget {
   const ClubMainPage({super.key,required this.ClubName});
@@ -21,12 +22,9 @@ class _ClubMainPageState extends State<ClubMainPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                decoration:  BoxDecoration(
-                  color: Colors.grey[400],
-                ),
                 child: Padding(
                   padding:  EdgeInsets.all(8.0.r),
-                  child: Text("社团主页"),
+                  child: Text("社团主页",style: TextStyle(fontSize: 20.38.sp,fontWeight: FontWeight.w700),),
                 ),
               ),
             ],
@@ -41,7 +39,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
                   ),
                 );
               },
-              icon: const Icon(Icons.settings,size: 40,)
+              icon: const Icon(MyIcons.setting_2,size: 40,)
           )
         ],
       ),
@@ -98,14 +96,22 @@ class _ClubInformationState extends State<ClubInformation> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: 20.w),
                     child: Container(
-                      width: 80.w,
-                      height: 80.h,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.grey
-
+                      width: 100.w,
+                      height: 100.h,
+                      child: ClipRRect(
+                        //borderRadius:  const BorderRadius.vertical(top: Radius.circular(20)),
+                        child: AspectRatio(
+                          aspectRatio: 1,//图片尺寸
+                          child: Image.asset("assets/images/twt.png",
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => Container( // 错误处理
+                              color: Colors.grey[200],
+                              child: const Icon(Icons.broken_image),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -115,34 +121,78 @@ class _ClubInformationState extends State<ClubInformation> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        //--------------名称------------------------
                         Text(widget.clubname,
                           style:TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 25.sp
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20.sp
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                        ),//社团名称
-                        Text("类型:  育人实践基地",style: TextStyle(
-                            color: Colors.grey[600],fontSize: 17.sp
-                        ),)//社团类型
+                        ),
+                        Padding(padding: EdgeInsets.symmetric(vertical: 10.h),
+                          child: Container(
+                            height: 1,
+                            width: 158.w,
+                            color: const Color(0xFFD9D9D9),
+                          ),
+                        ),
+                        //--------------类型---------------------
+                        Padding(padding: EdgeInsets.only(right: 40.w),
+                          child: Container(
+                            height: 25.h,
+                            width: 94.w,
+                            decoration: BoxDecoration(
+                                color: Colors.orange[400],
+                                borderRadius: BorderRadius.circular(31.r)
+                            ),
+                            child:Center(
+                              child: Text("育人实践基地",style: TextStyle(
+                                  fontWeight: FontWeight.w700,fontSize: 13.sp
+                              ),),
+                            ),
+                          ),
+                        ),
+                        //社团类型
                       ],//会溢出屏幕
                     ),
                   ),
-                  IconButton(icon:Icon(GlobalInformation().collectedClubs.contains(widget.clubname)
-                      ?Icons.star:Icons.star_border,size: 30,
-                    color:GlobalInformation().collectedClubs.contains(widget.clubname)
-                        ?Colors.yellow[700]:Colors.black,),
-                      onPressed: (){
-                          if(!GlobalInformation().collectedClubs.contains(widget.clubname)) {
-                            GlobalInformation().addCollectedClub(widget.clubname);
-                          }
-                          else{
-                            GlobalInformation().removeCollectedClub(widget.clubname);
-                          }
-                        setState(() {});
-                      }
-                  ) //是否关注该社团
+                  Padding(padding: EdgeInsets.only(top: 55.h),
+                    child: Row(
+                      children: [
+                        Container(
+                            width: 58.w,
+                            height: 25.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                color: Colors.grey
+                            ),
+                            child: Center(
+                              child: Text(GlobalInformation().collectedClubs.contains(widget.clubname)
+                                  ?"已关注":"关注社团"
+                                ,style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp
+                              ),),
+                            )
+                        ),
+                        IconButton(icon:Icon(GlobalInformation().collectedClubs.contains(widget.clubname)
+                            ?Icons.star:Icons.star_border,size: 23,
+                          color:GlobalInformation().collectedClubs.contains(widget.clubname)
+                              ?Colors.yellow[700]:Colors.black,),
+                            onPressed: (){
+                              if(!GlobalInformation().collectedClubs.contains(widget.clubname)) {
+                                GlobalInformation().addCollectedClub(widget.clubname);
+                              }
+                              else{
+                                GlobalInformation().removeCollectedClub(widget.clubname);
+                              }
+                              setState(() {});
+                            }
+                        ) //是否关注该社团
+                      ],
+                    ),
+                  )
                 ],),
             ),
             //-------------------------------------------------------------
@@ -158,7 +208,7 @@ class _ClubInformationState extends State<ClubInformation> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                      Padding(
-                      padding: EdgeInsets.only(right: 20,top: 3),
+                      padding: EdgeInsets.only(right: 20.r,top: 3.r),
                       child: Text("社团简介:",style: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Colors.black87,
@@ -171,7 +221,7 @@ class _ClubInformationState extends State<ClubInformation> {
                         "该社团是XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
                         style: TextStyle(
                             color: Colors.grey[600],
-                            height: 1.5,
+                            height: 1.5.h,
                             fontSize: 14.sp
                         ),
                       ),
@@ -181,8 +231,14 @@ class _ClubInformationState extends State<ClubInformation> {
                 ),
               ),
             ),
+            Padding(padding: EdgeInsets.symmetric(vertical: 10.r),
+              child: Container(
+                height: 1.h,
+                color: const Color(0xFFD9D9D9),
+              ),
+            ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
+              padding: EdgeInsets.only(top: 10.0.r,bottom: 10.0.r),
               child: Text("活动一览",style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 25.sp,

@@ -4,7 +4,7 @@ import 'addLinkClub.dart';
 import 'package:test_fist/widgets/ImagePicker.dart';
 import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class EventReleasePage extends StatefulWidget {
   const EventReleasePage({super.key});
@@ -115,8 +115,8 @@ class _BodyState extends State<_Body> {
                               hintText: "添加活动时间",
                               hintStyle: TextStyle(fontSize: 12.sp),
                               border: InputBorder.none,
-                              prefixIcon: Padding(padding: EdgeInsets.symmetric(vertical: 10.h),
-                                child: Icon(Icons.access_time_rounded,size: 24),
+                              prefixIcon: Padding(padding: EdgeInsets.only(bottom: 13.h),
+                                child: const Icon(Icons.access_time_outlined,size: 24),
                               )
                           ),
                             onChanged: (value)=> GlobalInformation().updateDraft('time', value)
@@ -129,8 +129,8 @@ class _BodyState extends State<_Body> {
                               hintText: "添加活动地点",
                               hintStyle: TextStyle(fontSize: 12.sp),
                               border: InputBorder.none,
-                              prefixIcon: Padding(padding: EdgeInsets.symmetric(vertical: 10.h),
-                                child: Icon(Icons.location_on_outlined,size: 24,),
+                              prefixIcon: Padding(padding: EdgeInsets.only(bottom: 13.h),
+                                child: const Icon(MyIcons.location,size: 24,),
                               )
                           ),
                             onChanged: (value)=> GlobalInformation().updateDraft('place', value)
@@ -140,7 +140,7 @@ class _BodyState extends State<_Body> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                              Padding(padding: EdgeInsets.only(left: 12.w),
-                              child: Icon(Icons.add,size: 24,),
+                              child: const Icon(MyIcons.category,size: 24,),
                             ),
                             TextButton(
                               onPressed: () async {
@@ -198,8 +198,8 @@ class _BodyState extends State<_Body> {
                         //--------------------------------
                         //-----------图片上传--------------
                      Padding(padding:EdgeInsets.only(top: 20.h),
-                          child: ImagePicker(
-                            child: Icon(Icons.photo_outlined),
+                          child: const ImagePicker(
+                            child: Icon(MyIcons.gallery),
                           ),),
                         //-------------------------------
                         //---------校区选择和发送----------
@@ -227,7 +227,7 @@ class _BodyState extends State<_Body> {
                                     color: Colors.blue
                                 ),
                               ),
-                              icon: const Icon(Icons.location_on_outlined,color: Colors.blue,size: 20,),
+                              icon: const Icon(MyIcons.location_blue,color: Colors.blue,size: 20,),
                             ),
                             //发送按钮
                             ElevatedButton(

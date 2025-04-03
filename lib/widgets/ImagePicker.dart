@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImagePicker extends StatefulWidget {
   const ImagePicker({super.key,required this.child});
@@ -72,8 +72,8 @@ class _ImagePickerState extends State<ImagePicker> {
             child: GestureDetector(
             onTap: _pickImages,
                 child: Container(
-                width: 100,
-                height: 100,
+                width: 100.w,
+                height: 100.h,
                 decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey,width: 1),
                 borderRadius: BorderRadius.circular(20),),

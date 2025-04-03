@@ -3,7 +3,7 @@ import 'package:test_fist/routes/Settings/PersonSettings.dart';
 import 'package:test_fist/routes/Notification/NotificationCenter.dart';
 import 'MyCollection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:test_fist/widgets/my_icons_icons.dart';
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
 
@@ -26,7 +26,7 @@ class _PersonPageState extends State<PersonPage> {
               ),
               );
             },
-            icon: const Icon(Icons.mail_outline, size: 30),
+            icon: const Icon(Icons.email_outlined, size: 30),
           ),
           IconButton(
             onPressed: () {
@@ -37,7 +37,7 @@ class _PersonPageState extends State<PersonPage> {
               ),
             );
             },
-            icon: const Icon(Icons.settings, size: 30),
+            icon: const Icon(MyIcons.setting_2, size: 30),
           ),
         ],
       ),
@@ -92,7 +92,7 @@ class _PersonPageState extends State<PersonPage> {
                           horizontal: 12.w
                           , vertical: 8.h),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: const Color(0xFF6CB2F3),
                         borderRadius: BorderRadius.circular(20.r),),
 
                         child:  Text(
@@ -121,10 +121,10 @@ class _PersonPageState extends State<PersonPage> {
                       child:  Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.messenger_rounded,color: Colors.blueAccent,size: 30,),
+                          const Icon(MyIcons.message_blue,color: Colors.blueAccent,size: 24,),
                           Text("消息中心",style: TextStyle(
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.w400
+                              fontWeight: FontWeight.w900
                           ),)
                         ],
                       ),
@@ -141,10 +141,10 @@ class _PersonPageState extends State<PersonPage> {
                     child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.favorite,color: Colors.redAccent,size: 30,),
+                        const Icon(MyIcons.heart_red,color: Colors.red,size: 24,),
                         Text("我的点赞",style: TextStyle(
                             fontSize: 15.sp,
-                            fontWeight: FontWeight.w400
+                            fontWeight: FontWeight.w900
                         ),)
                       ],
                     ),
@@ -167,10 +167,10 @@ class _PersonPageState extends State<PersonPage> {
                     child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.star,color: Colors.yellow,size: 30,),
+                        const Icon(MyIcons.star_yellow,color: Color(0xFFFFB21B),size: 24,),
                         Text("我的收藏",style: TextStyle(
                             fontSize: 15.sp,
-                            fontWeight: FontWeight.w400
+                            fontWeight: FontWeight.w900
                         ),)
                       ],
                     ),

@@ -66,11 +66,11 @@ class _MyCollectedClubState extends State<MyCollectedClub> {
   Widget build(BuildContext context) {
     return  CustomScrollView(
       slivers: [
-        SliverPadding(padding: EdgeInsets.symmetric(vertical: 10.h),
+        SliverPadding(padding: EdgeInsets.symmetric(vertical: 15.h),
           sliver: SliverGrid(
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                mainAxisSpacing: 40.0.h,
+                mainAxisSpacing: 15.0.h,
                 crossAxisSpacing: 20.0.h,
                 childAspectRatio: 4.0,
               ),
@@ -86,7 +86,7 @@ class _MyCollectedClubState extends State<MyCollectedClub> {
                       );
                       setState(() {});
                     },
-                    child: Padding(padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+                    child: Padding(padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 1.h),
                       child: collectedClub(context, index),
                     ),
                   );
@@ -112,7 +112,7 @@ class MyCollectedEvent extends StatefulWidget {
 class _MyCollectedEventState extends State<MyCollectedEvent> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center();
   }
 }
 
@@ -123,7 +123,7 @@ Widget collectedClub(BuildContext context,int index)
     alignment: Alignment.center,
     decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(40.r),
+        borderRadius: BorderRadius.circular(20.r),
         boxShadow: [BoxShadow(
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 2.h,
@@ -134,7 +134,7 @@ Widget collectedClub(BuildContext context,int index)
     child: Row(
       children: [
         ClipRRect(
-          borderRadius:  const BorderRadius.only( topLeft:Radius.circular(40),bottomLeft: Radius.circular(40)),
+          borderRadius:  BorderRadius.only( topLeft:Radius.circular(20.r),bottomLeft: Radius.circular(40.r)),
           child: AspectRatio(
             aspectRatio: 1.w,//图片尺寸
             child: Image.asset("assets/images/twt.png",

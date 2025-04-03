@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/Tool.dart';
 import 'package:test_fist/widgets/ClubSearch.dart';
+import 'package:test_fist/widgets/my_icons_icons.dart';
 import '../Log/LogPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -52,21 +53,25 @@ class _EventViewState extends State<EventView> {
           headerSliverBuilder: (BuildContext context,bool inner){
             return [
               SliverToBoxAdapter(
-                child:Padding(padding: EdgeInsets.symmetric(horizontal: 35.w),
+                child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
-                    height: 50.h,
+                    height: 33.h,
+                    width: 392.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.r),
                         color: Colors.blue[50]
                     ),
-                    child: Padding(padding: EdgeInsets.only(top: 8,left: 15),
-                      child: Text("${nowTime},XXX",
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(width: 10.w,),
+                        Text("${nowTime},XXX",
                         style: TextStyle(
                             color: Colors.blue[800],
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold
                         ),
-                      ),
+                      ),]
                     )
                   ),
                 )
@@ -84,9 +89,10 @@ class _EventViewState extends State<EventView> {
 Widget TopImageSliver(BuildContext context)
 {
   return SliverToBoxAdapter(
-    child: Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+    child: Padding(padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical:10.h ),
       child: Container(
-            height: 200.h,
+            height: 120.h,
+            width: 378.w,
             child: Swiper(
                 itemCount: 5,
                 loop: true,
@@ -95,10 +101,10 @@ Widget TopImageSliver(BuildContext context)
                 autoplayDelay:5000,
                 itemBuilder: (BuildContext context,int index)
                 {
-                  return Padding(padding: EdgeInsets.all(20.r),
+                  return Padding(padding: const EdgeInsets.only(),
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.r),
+                            borderRadius: BorderRadius.circular(8.r),
                             color: Colors.grey[300]
                         ),
                         child: Text(""),
@@ -195,12 +201,12 @@ Widget EventViewList(BuildContext context)
                 children: [
                   //评论
                   IconButton(onPressed: (){},
-                    icon: Icon(Icons.chat_outlined),
+                    icon: const Icon(MyIcons.message),
                   ),
                   //点赞
-                  IconButton(onPressed: (){}, icon: Icon(Icons.thumb_up_off_alt_outlined)),
+                  IconButton(onPressed: (){}, icon: const Icon(MyIcons.like_1)),
                   //收藏
-                  IconButton(onPressed: (){}, icon: Icon(Icons.star_border)),
+                  IconButton(onPressed: (){}, icon: const Icon(Icons.thumb_down_alt_outlined)),
                 ],
               ),
               )

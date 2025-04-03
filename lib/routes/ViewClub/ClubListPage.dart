@@ -45,11 +45,11 @@ class ClubList_Body extends StatefulWidget {
 class _ClubList_BodyState extends State<ClubList_Body> {
   List dataList = _ClubListPageState.SearchValue != "" ? searchClub:allClub;
   @override
-  Widget build(BuildContext context) {//改为瀑布流式布局，待解决
+  Widget build(BuildContext context) {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.8
+            crossAxisCount: 1,
+            childAspectRatio: 2.7
         ),
         itemCount: _ClubListPageState.SearchValue.isNotEmpty ? searchClub.length:allClub.length,
         itemBuilder: (context,index){
@@ -80,7 +80,92 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 })
                         );
                       },
-                      child: AspectRatio(
+                      child: Container(
+                        width: 378.w,
+                        height: 140.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 20.w),
+                              child: Container(
+                                width: 112.w,
+                                height: 113.h,
+                                child: ClipRRect(
+                                  //borderRadius:  const BorderRadius.vertical(top: Radius.circular(20)),
+                                  child: AspectRatio(
+                                    aspectRatio: 1,//图片尺寸
+                                    child: Image.asset("assets/images/twt.png",
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Container( // 错误处理
+                                        color: Colors.grey[200],
+                                        child: const Icon(Icons.broken_image),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            //社团头像
+                            Container(width: 30.w,),
+                            Flexible(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //--------------名称------------------------
+                                  Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.2.h,
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10.h),
+                                    child: Container(
+                                      height: 1,
+                                      width: 130.w,
+                                      color: const Color(0xFFD9D9D9),
+                                    ),
+                                  ),
+                                  //--------------类型---------------------
+                                  Padding(padding: EdgeInsets.only(right: 40.w),
+                                    child: Container(
+                                      height: 25.h,
+                                      width: 94.w,
+                                      decoration: BoxDecoration(
+                                          color: Colors.orange[400],
+                                          borderRadius: BorderRadius.circular(31.r)
+                                      ),
+                                      child:Center(
+                                        child: Text("育人实践基地",style: TextStyle(
+                                            fontWeight: FontWeight.w700,fontSize: 13.sp
+                                        ),),
+                                      ),
+                                    ),
+                                  ),
+                                  //社团类型
+                                ],//会溢出屏幕
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      )
+                    )
+                ),
+
+          );
+        }
+    );
+  }
+}
+
+
+/*
+AspectRatio(
                           aspectRatio: 1.065,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -102,9 +187,9 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                   padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 8.h),
                                 child: Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     fontWeight: FontWeight.w500,
-                                    height: 1.2
+                                    height: 1.2.h
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -114,12 +199,5 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                             ],
                           ),
                       ),
-                    )
-                ),
-
-          );
-        }
-    );
-  }
-}
+ */
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class NotificationCenter extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _NotificationCenterState extends State<NotificationCenter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('通知中心', style: TextStyle(fontSize: 18.sp)),
+        title: Text('消息', style: TextStyle(fontSize: 24.sp)),
         leading: BackButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -27,14 +28,14 @@ class _NotificationCenterState extends State<NotificationCenter> {
                 Container(
                   //alignment: Alignment.topCenter,
                   //decoration: ButtonStyle(),
-                  height: 100.h,
+                  height: 79.h,
                   width: 120.w,
                   child: InkWell(
                     onTap: (){},
                     child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.message,color: Colors.black,size: 40,),
+                        const Icon(MyIcons.message,size: 40,),
 
                       ],
                     ),
@@ -51,7 +52,7 @@ class _NotificationCenterState extends State<NotificationCenter> {
                     child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.thumb_up_alt_outlined,color: Colors.black,size: 40,),
+                        const Icon(MyIcons.like_1,size: 42,),
 
                       ],
                     ),
@@ -69,7 +70,7 @@ class _NotificationCenterState extends State<NotificationCenter> {
                     child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.campaign,color: Colors.black,size: 40,),
+                        const Icon(MyIcons.loudspeaker,size: 34,),
 
                       ],
                     ),

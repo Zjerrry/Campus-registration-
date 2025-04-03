@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Tool.dart';
 import 'package:test_fist/commons/Global.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //导入的社团列表
 List allClub = [];//全部社团列表
@@ -34,44 +35,32 @@ class _TopSearchBarState extends State<TopSearchBar> {
   @override
   Widget build(BuildContext context) {
     //屏幕尺寸
-    MediaQueryData queryData = MediaQuery.of(context);
     return Container(
-      width: queryData.size.width*0.8,
-      height: 40,
-      padding: EdgeInsets.only(left: 20,right: 20),
+      width: 352.w,
+      height: 31.h,
+      padding: EdgeInsets.only(left: 20.r,right: 20.r),
       alignment: Alignment.centerRight,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(9.r),
           color: Colors.white
       ),
       child:Padding(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(5.r),
         child:TextField(
           controller: _controller,
           //focusNode: _focusNode,
           autofocus: false,
           decoration: InputDecoration(
             hintText: widget.lable,
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: Colors.grey),
             border: InputBorder.none,
 
-            icon: const Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Icon(Icons.search,
-                size: 20,
+            icon:  Padding(
+              padding:  EdgeInsets.only(left: 20.w),
+              child: const Icon(Icons.search,
+                size: 25,
                 color: Colors.black45,
               ),),
-            //输入后显示的清除输入内容按键
-            /*
-            suffixIcon: SearchValue.isNotEmpty ?
-            IconButton(onPressed: ()
-            {
-              setState(() {
-                SearchValue = "";
-                _controller.clear();
-                //Search(_ClublistpageState.SearchValue);
-              });
-            }, icon: Icon(Icons.close)):null,*/
 
           ),
           onChanged: (value){

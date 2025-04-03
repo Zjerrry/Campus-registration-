@@ -18,31 +18,31 @@ class _LogPageState extends State<LogPage> {
       body: Column(
         children: [
           Container(
-            height: 70.h,//后续根据屏幕尺寸修改
+            height: 70.h,
           ),
           Container(
-            height: 100.h,//后续根据屏幕尺寸修改
+            height: 100.h,
             alignment: AlignmentDirectional.bottomCenter,
             child: Row(
               children: [
                 SizedBox(
-                  width: 40.w,//后续根据屏幕尺寸修改
+                  width: 40.w,
                 ),
                 Text("Welcome",
-                style: TextStyle(fontSize: 50.sp,//后续根据屏幕尺寸修改
+                style: TextStyle(fontSize: 50.sp,
                     fontWeight:FontWeight.w600),),
               ],
             ),
           ),
           Container(
-            height: 350.h,//后续根据屏幕尺寸修改
+            height: 350.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 150.w,//后续根据屏幕尺寸修改
-                height: 70.h,//后续根据屏幕尺寸修改
+                width: 150.w,
+                height: 70.h,
                 child: ElevatedButton(
                     onPressed: ()
                     {
@@ -59,8 +59,8 @@ class _LogPageState extends State<LogPage> {
                 width: 50.w,//后续根据屏幕尺寸修改
               ),
               SizedBox(
-                width: 150.w,//后续根据屏幕尺寸修改
-                height: 70.h,//后续根据屏幕尺寸修改
+                width: 150.w,
+                height: 70.h,
                 child: ElevatedButton(
                     onPressed:  ()
                     {

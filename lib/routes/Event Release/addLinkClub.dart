@@ -43,7 +43,7 @@ class _addLinkClubState extends State<addLinkClub> {
             ),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF6CB2F3),
+            backgroundColor: const Color(0xFF6CB2F3),
           ),
         ),
       ),
@@ -84,7 +84,7 @@ class _addLinkClubState extends State<addLinkClub> {
                 crossAxisCount: 1,
                 mainAxisSpacing: 22.0.h,
                 crossAxisSpacing: 10.0.h,
-                childAspectRatio: 4.0,
+                childAspectRatio: 4,
               ),
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
@@ -138,19 +138,22 @@ class _addLinkClubState extends State<addLinkClub> {
                                 ),
                                  SizedBox(height: 6.h),
                                 Container(
-                                  padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                                  width: 94.w,
+                                  height: 17.h,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFF1CF8B),
+                                    color: const Color(0xFFF1CF8B),
                                     borderRadius: BorderRadius.circular(30.r),
                                   ),
-                                  child:  Text(
-                                    "育人实践基地",
-                                    //style: _kLabelStyle,
-                                    strutStyle: StrutStyle(height: 1.h),
+                                  child:Center(
+                                    child: Text(
+                                      "育人实践基地",
+                                      //style: _kLabelStyle,
+                                      strutStyle: StrutStyle(height: 1.h),
                                       style: TextStyle(color: Colors.black,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w700
                                       ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -181,7 +184,7 @@ class _addLinkClubState extends State<addLinkClub> {
                             backgroundColor: GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
                             searchClub[index] :
                             allClub[index]) ?
-                            Color(0xFF6CB2F3) :
+                            const  Color(0xFF6CB2F3) :
                             Colors.white60
                           ),
                           child: Text(GlobalInformation().linkingClubs.contains(SearchValue.isNotEmpty ?
