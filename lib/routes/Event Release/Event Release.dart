@@ -5,6 +5,9 @@ import 'package:test_fist/widgets/ImagePicker.dart';
 import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
+import 'package:date_picker_plus/date_picker_plus.dart';
+import 'addEventTime.dart';
+
 
 class EventReleasePage extends StatefulWidget {
   const EventReleasePage({super.key});
@@ -108,18 +111,29 @@ class _BodyState extends State<_Body> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //========================活动时间====================================
-                        TextFormField(
-                          controller: _timeController,
-                            style: TextStyle(fontSize: 12.sp),
-                          decoration: InputDecoration(
-                              hintText: "添加活动时间",
-                              hintStyle: TextStyle(fontSize: 12.sp),
-                              border: InputBorder.none,
-                              prefixIcon: Padding(padding: EdgeInsets.only(bottom: 13.h),
-                                child: const Icon(Icons.access_time_outlined,size: 24),
-                              )
-                          ),
-                            onChanged: (value)=> GlobalInformation().updateDraft('time', value)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(padding: EdgeInsets.only(left: 12.w),
+                              child: Icon(Icons.access_time_rounded,size: 24,),
+                            ),
+                            TextButton(
+                                onPressed: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => addEventTime(),
+                                    ),
+                                  );
+                                  setState(() {});
+                                },
+                                child: Text(
+                                  "添加活动时间",
+                                  style: TextStyle(fontSize: 12.sp,
+                                      color: Colors.blue),
+                                )
+                            ),
+                                  ],
                         ),
                         //===========================活动地点 ==============================
                         TextFormField(
@@ -153,7 +167,7 @@ class _BodyState extends State<_Body> {
                                 setState(() {});
                               },
                               child:  Text("添加关联社团",
-                                style: TextStyle(fontSize: 12.sp),),
+                                style: TextStyle(fontSize: 12.sp, color: Colors.blue),),
                             ),
                           ],
                         ),
@@ -198,8 +212,8 @@ class _BodyState extends State<_Body> {
                         //--------------------------------
                         //-----------图片上传--------------
                      Padding(padding:EdgeInsets.only(top: 20.h),
-                          child: const ImagePicker(
-                            child: Icon(MyIcons.gallery),
+                          child: ImagePicker(
+                            child: Icon(Icons.photo_outlined),
                           ),),
                         //-------------------------------
                         //---------校区选择和发送----------
@@ -227,7 +241,7 @@ class _BodyState extends State<_Body> {
                                     color: Colors.blue
                                 ),
                               ),
-                              icon: const Icon(MyIcons.location_blue,color: Colors.blue,size: 20,),
+                              icon: const Icon(Icons.location_on_outlined,color: Colors.blue,size: 20,),
                             ),
                             //发送按钮
                             ElevatedButton(
