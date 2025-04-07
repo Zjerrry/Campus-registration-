@@ -43,6 +43,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
           )
         ],
       ),
+
       body: CustomScrollView(
         slivers: [
           //------------------------------------------------------------------------

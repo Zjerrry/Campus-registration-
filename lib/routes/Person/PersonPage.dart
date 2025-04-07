@@ -27,6 +27,7 @@ class _PersonPageState extends State<PersonPage> {
               );
             },
             icon: const Icon(Icons.email_outlined, size: 30),
+
           ),
           IconButton(
             onPressed: () {

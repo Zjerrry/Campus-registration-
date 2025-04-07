@@ -70,6 +70,7 @@ class _LogPageState extends State<LogPage> {
                             return const LogonRoute();
                           })
                       );
+
                     },
                     child:  Text("注册",
                       style: TextStyle(fontSize: 20.sp,),)),

@@ -107,6 +107,7 @@ class MyCollectedEvent extends StatefulWidget {
 
   @override
   State<MyCollectedEvent> createState() => _MyCollectedEventState();
+
 }
 
 class _MyCollectedEventState extends State<MyCollectedEvent> {

@@ -106,6 +106,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 ),
                               ),
                             ),
+
                             //社团头像
                             Container(width: 30.w,),
                             Flexible(

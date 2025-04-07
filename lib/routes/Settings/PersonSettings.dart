@@ -62,6 +62,7 @@ class _PersonSettingsState extends State<PersonSettings> {
           ),
         ),
         //-------------------------------------------------
+
         //----------------------电话邮箱--------------------
         Padding(
           padding: EdgeInsets.only(bottom: 15.h),

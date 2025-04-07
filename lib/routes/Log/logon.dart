@@ -17,6 +17,7 @@ class _LogonRouteState extends State<LogonRoute> {
   bool _nameAutoFocus = true;
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("注册"),),

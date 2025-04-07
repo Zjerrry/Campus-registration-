@@ -44,6 +44,7 @@ class _BottomBar extends StatelessWidget {
     required this.onSelected,
   });
 
+
   final int selectedIndex;
   final Function(int) onSelected;
 

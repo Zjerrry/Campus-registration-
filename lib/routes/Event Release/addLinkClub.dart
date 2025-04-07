@@ -140,6 +140,7 @@ class _addLinkClubState extends State<addLinkClub> {
                                 Container(
                                   width: 94.w,
                                   height: 17.h,
+
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFF1CF8B),
                                     borderRadius: BorderRadius.circular(30.r),

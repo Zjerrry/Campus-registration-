@@ -48,6 +48,7 @@ class _LoginRouteState extends State<LoginRoute> {
                               pwdShow = !pwdShow;
                             });
                           },
+
                           icon: Icon(pwdShow?Icons.visibility_off:Icons.visibility))
                   ),
                   obscureText: !pwdShow,

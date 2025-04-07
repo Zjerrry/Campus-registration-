@@ -52,6 +52,7 @@ class _ImagePickerState extends State<ImagePicker> {
     List<AssetEntity>? result = await AssetPicker.pickAssets(
       context,
       pickerConfig: const AssetPickerConfig(maxAssets: 1), // 最多选择9张
+
     );
 
     if (result != null) {

@@ -134,6 +134,7 @@ class _BodyState extends State<_Body> {
                                 )
                             ),
                                   ],
+
                         ),
                         //===========================活动地点 ==============================
                         TextFormField(
