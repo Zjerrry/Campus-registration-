@@ -68,7 +68,7 @@ class _EventSearchState extends State<EventSearch> {
                 padding: EdgeInsets.zero,
                 backgroundColor: Colors.white
               ),
-                  child: const Icon(Icons.add),
+                  child: const Icon(Icons.close),
             ),
           ),
           Padding(padding: EdgeInsets.only(right: 10.w))

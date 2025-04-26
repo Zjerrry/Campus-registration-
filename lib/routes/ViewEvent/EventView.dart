@@ -27,38 +27,37 @@ class _EventViewState extends State<EventView> {
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.black,
-        title:Container(
+        title:Padding(
+          padding: EdgeInsets.only(left: 45.w),
+          child: Container(
               width: 352.w,
               height: 33.h,
-              //padding: EdgeInsets.only(left: 20.r,right: 20.r),
               alignment: Alignment.centerRight,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(9.r),
-                  color: Colors.white
-              ),
               child:ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EventSearch(),
-                      ),
-                    );
-                  },
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EventSearch(),
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.white),
                 ),
-                  child: Padding(
-                      padding: EdgeInsets.all(5.r),
-                      child:const Row(
-                        children: [
-                          Icon(Icons.search),
-                          Text("搜索活动",style: TextStyle(color: Colors.grey),)
-                        ],
-                      )
-                  ),
+                child: Padding(
+                    padding: EdgeInsets.all(5.r),
+                    child:const Row(
+                      children: [
+                        Icon(Icons.search),
+                        Text("搜索活动",style: TextStyle(color: Colors.grey),)
+                      ],
+                    )
+                ),
               )
-            ),
+          ),
+        )
+        ,
         actions: <Widget>[ //导航栏右侧菜单
           IconButton(icon: Icon(Icons.login,color: Colors.blue,), onPressed: () {
             Navigator.push(
