@@ -19,7 +19,7 @@ class _PersonSettingsState extends State<PersonSettings> {
         backgroundColor: Colors.grey[200],
         title: Padding(
           padding: EdgeInsets.symmetric(horizontal: 90.w),
-            child: Text('个人信息更改',style: TextStyle(
+            child: const Text('个人信息更改',style: TextStyle(
               fontWeight: FontWeight.bold
               ),
             )

@@ -4,8 +4,9 @@ import 'package:test_fist/routes/HomePage.dart';
 import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  Global.init().then((onValue)=>runApp(const MyApp()));
+void main() async {
+  await Global.init();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(412,917),
       minTextAdapt: true,
+
+
+      
       splitScreenMode: true,
       builder: (context,child)=>MaterialApp(
         //debugShowCheckedModeBanner: false,

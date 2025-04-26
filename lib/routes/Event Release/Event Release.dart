@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/ViewClub/ClubMainPage.dart';
 import 'addLinkClub.dart';
@@ -6,7 +8,6 @@ import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
 import 'package:date_picker_plus/date_picker_plus.dart';
-import 'addEventTime.dart';
 
 
 class EventReleasePage extends StatefulWidget {
@@ -40,7 +41,8 @@ class _BodyState extends State<_Body> {
   TextEditingController _contentController = TextEditingController();
   TextEditingController _titleController =TextEditingController();
   TextEditingController _placeController =TextEditingController();
-  TextEditingController _timeController =TextEditingController();
+  DateTime? startDate;
+  DateTime? endDate;
 
 
   @override
@@ -55,7 +57,8 @@ class _BodyState extends State<_Body> {
     _titleController = TextEditingController(text: draft['title']);
     _placeController = TextEditingController(text: draft['place']);
     _contentController = TextEditingController(text: draft['content']);
-    _timeController = TextEditingController(text: draft['time']);
+    startDate = draft['start_time'];
+    endDate = draft['end_time'];
   }
 
   //-------------最终保存-----------------------------------------
@@ -119,16 +122,40 @@ class _BodyState extends State<_Body> {
                             ),
                             TextButton(
                                 onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => addEventTime(),
+                                  final selectDate = await showRangePickerDialog(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    minDate: DateTime(2021, 1, 1),
+                                    maxDate: DateTime(2028, 12, 31),
+                                    singelSelectedCellDecoration: BoxDecoration(
+                                      color: Colors.blueAccent[100],
+                                      shape: BoxShape.circle
+                                    ),
+                                    currentDateDecoration: BoxDecoration(
+                                        border: Border.all(color: Colors.blueAccent,width: 1),
+                                        shape: BoxShape.circle
                                     ),
                                   );
-                                  setState(() {});
+                                  // await Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => addEventTime(),
+                                  //   ),
+                                  // );
+                                  if(selectDate != null)
+                                  {
+                                    setState(() {
+                                      startDate = selectDate.start;
+                                      endDate = selectDate.end;
+                                    });
+                                    GlobalInformation().updateDraft('start_time',startDate);
+                                    GlobalInformation().updateDraft('end_time',endDate);
+                                  }
                                 },
                                 child: Text(
-                                  "添加活动时间",
+                                  startDate != null && endDate != null ?
+                                  "${startDate!.year}/${startDate!.month}/${startDate!.day}-${endDate!.year}/${endDate!.month}/${endDate!.day}"
+                                  :"待确定",
                                   style: TextStyle(fontSize: 12.sp,
                                       color: Colors.blue),
                                 )
@@ -213,7 +240,7 @@ class _BodyState extends State<_Body> {
                         //--------------------------------
                         //-----------图片上传--------------
                      Padding(padding:EdgeInsets.only(top: 20.h),
-                          child: ImagePicker(
+                          child: const ImagePicker(
                             child: Icon(Icons.photo_outlined),
                           ),),
                         //-------------------------------

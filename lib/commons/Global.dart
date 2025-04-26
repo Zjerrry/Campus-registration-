@@ -57,23 +57,28 @@ class GlobalInformation{
  //=======================发布活动的草稿==========================
  final Map<String,dynamic> editingDraft = {
    'title':'',
-   'time':'',
    'place':'',
+   'start_time':null,
+   'end_time':null,
    'content':'',
  };
  //---------------------储存草稿字典---------------------------
 
   String get draftTitle =>editingDraft['title'];
-  String get draftTime =>editingDraft['time'];
   String get draftPlace =>editingDraft['place'];
   String get draftContent =>editingDraft['content'];
+  DateTime? get draftStartTime => editingDraft['start_time'];
+  DateTime? get draftEndTime => editingDraft['end_time'];
   //--------------------------------------------------------
 
   void updateDraft(String key,dynamic value)
   {
+    print("--------------------------------");
     if(editingDraft.containsKey(key))
       {
         editingDraft[key] = value;
+        print("===================");
+        print("$key:$value");
         _saveToPrefs();
       }
   }
@@ -130,7 +135,7 @@ void loadFromPrefs(Map<String,dynamic> data)
     _collectedClubs = List<String>.from(data['collectedClubs'] ?? []);
     _linkingClubs = List<String>.from(data['linkingClubs'] ?? []);
     _school = data['school'] ?? 0;
-    editingDraft.addAll(Map<String,dynamic>.from(data['editingDraft'] ?? {}));
+    editingDraft.addAll(data['editingDraft'] ?? {});
   }
 
 }
@@ -149,15 +154,29 @@ class Global{
     //-------------设置持久化数据--------------------------------
 
     //===================加载数据================================
-    //------------  会卡住？？？  -----------------
-    // GlobalInformation().loadFromPrefs({
-    //   'collectedClub':_prefs.getStringList('collect_list'),
-    //   'linkingClubs':_prefs.getStringList('linking_list'),
-    //   'school':_prefs.getInt('school'),
-    //   'editingDraft':_prefs.getStringList('editing_draft'),
-    // });
+    GlobalInformation().loadFromPrefs({
+      'collectedClubs':_prefs.getStringList('collect_list'),
+      'linkingClubs':_prefs.getStringList('linking_list'),
+      'school':_prefs.getInt('school'),
+      'editingDraft':_parseDraftData(_prefs.getString('editing_drafts')),
+    });
 
-    //===========================================================
+  }
+
+  //------------------ 解析草稿json文件 ---------------------
+  static Map<String,dynamic> _parseDraftData(String? jsonString){
+    final data = jsonDecode(jsonString ??'{}') as Map<String,dynamic>;
+    return {
+      'title':data['title'],
+      'place':data['place'],
+      'start_time': data['start_time'] != null
+          ? DateTime.parse(data['start_time'])
+          : null,
+      'end_time': data['end_time'] != null
+          ? DateTime.parse(data['end_time'])
+          : null,
+      'content': data['content'],
+    };
   }
 
   //==========================保存数据============================
@@ -171,19 +190,15 @@ class Global{
     _prefs.setInt("school", GlobalInformation().school);
 
     final draft = GlobalInformation().editingDraft;
-    _prefs.setStringList(
-      'editing_draft', [
-      draft['title'] ?? '',
-      draft['time'] ?? '',
-      draft['place'] ?? '',
-      draft['content'] ?? ''
-      ]
-    );
+    final draftJson = jsonEncode({
+      'title':draft['title'] ?? '',
+      'place':draft['place'] ?? '',
+      'start_time':draft['start_time']?.toIso8601String() ?? '',
+      'end_time':draft['end_time']?.toIso8601String() ?? '',
+      'content':draft['content'] ?? ''
+    });
 
+    _prefs.setString('editing_drafts',draftJson);
   }
-
-//==================================================================
-
-
 }
 

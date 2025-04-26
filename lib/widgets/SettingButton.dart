@@ -49,7 +49,7 @@ Widget PreButton(VoidCallback onPressed)
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("头像",style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
-            Padding(padding: EdgeInsets.only(left: 220),
+            Padding(padding: EdgeInsets.only(left: 200.w),
               child: Container(
                 height: 50,
                 width: 50,

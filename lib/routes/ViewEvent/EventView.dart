@@ -1,10 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:test_fist/widgets/Tool.dart';
-import 'package:test_fist/widgets/ClubSearch.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
 import '../Log/LogPage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'EventSearch.dart';
 
 class EventView extends StatefulWidget {
   const EventView({super.key});
@@ -27,15 +27,37 @@ class _EventViewState extends State<EventView> {
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.black,
-        title: TopSearchBar(
-                lable: "搜索活动",
-                onSearch: (value){
-                  setState(() {
-                    SearchValue = value;
-                    Search(SearchValue);
-                  });
-                },
-                SearchValue: SearchValue
+        title:Container(
+              width: 352.w,
+              height: 33.h,
+              //padding: EdgeInsets.only(left: 20.r,right: 20.r),
+              alignment: Alignment.centerRight,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9.r),
+                  color: Colors.white
+              ),
+              child:ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventSearch(),
+                      ),
+                    );
+                  },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.white),
+                ),
+                  child: Padding(
+                      padding: EdgeInsets.all(5.r),
+                      child:const Row(
+                        children: [
+                          Icon(Icons.search),
+                          Text("搜索活动",style: TextStyle(color: Colors.grey),)
+                        ],
+                      )
+                  ),
+              )
             ),
         actions: <Widget>[ //导航栏右侧菜单
           IconButton(icon: Icon(Icons.login,color: Colors.blue,), onPressed: () {
@@ -101,7 +123,7 @@ Widget TopImageSliver(BuildContext context)
                 autoplayDelay:5000,
                 itemBuilder: (BuildContext context,int index)
                 {
-                  return Padding(padding: const EdgeInsets.only(),
+                  return Padding(padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.r),
