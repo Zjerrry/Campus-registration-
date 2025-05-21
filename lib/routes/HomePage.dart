@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/ViewClub/ClubListPage.dart';
-import 'package:test_fist/routes/Event%20Release/Event%20Release.dart';
 import 'ViewEvent/EventView.dart';
 import 'package:test_fist/routes/Person/PersonPage.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
@@ -24,14 +23,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       bottomNavigationBar: _BottomBar(
         selectedIndex: _selectedIndex,
         onSelected: _onItemTapped,
       ),//学生或社团 person&event&home
         body: _Body(_selectedIndex),//页面
-      floatingActionButton: _selectedIndex == 0?FloatBotton(context):null
     );
   }
 }
@@ -80,6 +76,7 @@ class _BottomBar extends StatelessWidget {
       currentIndex: selectedIndex, // 绑定状态
     );
   }
+
 }
 
 Widget _Body(int currentIndex) {
@@ -92,22 +89,3 @@ Widget _Body(int currentIndex) {
   return pages[currentIndex];
 }
 
-Widget FloatBotton(BuildContext context)
-{
-  return FloatingActionButton(
-    onPressed:  ()
-    {
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context){
-            return const EventReleasePage();
-          })
-      );
-    },
-    backgroundColor: Colors.blue,
-    shape: const CircleBorder(),
-    child: const Icon(Icons.add,color: Colors.white,),
-  );
-
-
-}

@@ -53,6 +53,9 @@ class _LogPageState extends State<LogPage> {
                           })
                       );
                     },
+                    style: ButtonStyle(
+                        shadowColor: WidgetStateProperty.all(Colors.transparent)
+                    ),
                     child:  Text("登录", style: TextStyle(fontSize: 20.sp),)),
               ),
                SizedBox(
@@ -72,8 +75,12 @@ class _LogPageState extends State<LogPage> {
                       );
 
                     },
+                  style: ButtonStyle(
+                      shadowColor: WidgetStateProperty.all(Colors.transparent)
+                  ),
                     child:  Text("注册",
-                      style: TextStyle(fontSize: 20.sp,),)),
+                      style: TextStyle(fontSize: 20.sp,),),
+                ),
               )
             ],
           ),

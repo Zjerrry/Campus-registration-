@@ -81,7 +81,9 @@ class _MyCollectedClubState extends State<MyCollectedClub> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ClubMainPage(ClubName: GlobalInformation().collectedClubs[index]),
+                          builder: (context) => ClubMainPage(
+                              club: GlobalInformation().collectedClubs[index],
+                          ),
                         ),
                       );
                       setState(() {});
@@ -156,7 +158,7 @@ Widget collectedClub(BuildContext context,int index)
               children: [
                 Text(
                   //截取固定长度的文字
-                  truncateText(GlobalInformation().collectedClubs[index], 15),
+                  truncateText(GlobalInformation().collectedClubs[index]['club_name'], 15),
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
@@ -172,10 +174,10 @@ Widget collectedClub(BuildContext context,int index)
                     color: Colors.orangeAccent,
                     borderRadius: BorderRadius.circular(20.r),
                   ),
-                  child: const Text(
-                    "育人实践基地",
+                  child: Text(
+                    GlobalInformation().collectedClubs[index]['club_sort'],
                     //style: _kLabelStyle,
-                    strutStyle: StrutStyle(height: 1),
+                    strutStyle: const StrutStyle(height: 1),
                   ),
                 ),
               ],

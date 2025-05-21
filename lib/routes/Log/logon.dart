@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_fist/models/dio/getNet.dart';
+
 //注册页面
 class LogonRoute extends StatefulWidget {
   const LogonRoute({super.key});
@@ -31,7 +33,7 @@ class _LogonRouteState extends State<LogonRoute> {
                   TextFormField(
                     autofocus: _nameAutoFocus,
                     controller: _nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "昵称",
                     ),
                     validator: (va){
@@ -40,7 +42,8 @@ class _LogonRouteState extends State<LogonRoute> {
                   TextFormField(
                     controller: _StudentIDController,
                     autofocus: !_nameAutoFocus,
-                    decoration: InputDecoration(
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
                       labelText: "学号",
                     ), 
                       validator: (va){
@@ -71,7 +74,25 @@ class _LogonRouteState extends State<LogonRoute> {
                       child: ConstrainedBox(
                           constraints: BoxConstraints.expand(height: 55.0.h),
                           child: ElevatedButton(
-                              onPressed: _onLogon,
+                              onPressed: ()async{
+                                final form = _fromKey.currentState as FormState?;
+                                if(form!=null&&form.validate())
+                                  {
+                                    try{
+                                      await GetNet().register(
+                                          school_number: int.tryParse(_StudentIDController.text.trim())!, name: _nameController.text.trim(), password: _pwdController.text.trim()
+                                      );
+                                    }catch(e){
+                                      print(e);
+                                    }
+                                    Navigator.pop(context);
+                                  }else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("请完整填写内容"))
+                                  );
+                                }
+
+                              },
                               child: Text("注册", style: TextStyle(fontSize: 18.sp))),),
                   )
                 ],
@@ -82,7 +103,4 @@ class _LogonRouteState extends State<LogonRoute> {
   }
 }
 
-void _onLogon()
-{
 
-}

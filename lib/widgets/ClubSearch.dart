@@ -28,8 +28,7 @@ class _TopSearchBarState extends State<TopSearchBar> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp){
-      //_focusNode.requestFocus();
-      allClub = GlobalInformation.AllClub;
+      allClub = GlobalInformation.listOfClub;
     });
   }
 
@@ -37,7 +36,7 @@ class _TopSearchBarState extends State<TopSearchBar> {
   Widget build(BuildContext context) {
     //屏幕尺寸
     return Container(
-      width: 352.w,
+      //width: 352.w,
       height: 31.h,
       padding: EdgeInsets.only(left: 20.r,right: 20.r),
       alignment: Alignment.centerRight,
@@ -49,20 +48,17 @@ class _TopSearchBarState extends State<TopSearchBar> {
         padding: EdgeInsets.all(5.r),
         child:TextField(
           controller: _controller,
-          //focusNode: _focusNode,
           autofocus: false,
           decoration: InputDecoration(
             hintText: widget.lable,
-            hintStyle: const TextStyle(color: Colors.grey),
+            hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold,fontSize: 15.sp),
             border: InputBorder.none,
-
             icon:  Padding(
               padding:  EdgeInsets.only(left: 20.w),
-              child: const Icon(Icons.search,
-                size: 25,
+              child: Icon(Icons.search,
+                size: 25.sp,
                 color: Colors.black45,
               ),),
-
           ),
           onChanged: (value){
             setState(() {
@@ -87,9 +83,9 @@ void Search(String SearchValue)
   }
   for(int i=0;i<allClub.length;i++)
   {
-    if(allClub[i].length<SearchValue.length)
+    if(allClub[i]['club_name'].length<SearchValue.length)
       continue;
-    if(StrStr(allClub[i], SearchValue) >= 0)
+    if(StrStr(allClub[i]['club_name'], SearchValue) >= 0)
     {
       searchClub.add(allClub[i]);
     }

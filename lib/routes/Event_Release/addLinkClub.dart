@@ -5,7 +5,7 @@ import 'package:test_fist/commons/Global.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-Set<String> Club_added={};
+// Set<String> Club_added={};
 List<bool> has_add=[];
 class addLinkClub extends StatefulWidget {
   const addLinkClub({super.key});
@@ -36,14 +36,14 @@ class _addLinkClubState extends State<addLinkClub> {
 
             });
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF6CB2F3),
+          ),
           child: Text("完成添加社团",
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.sp
             ),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF6CB2F3),
           ),
         ),
       ),
@@ -127,7 +127,7 @@ class _addLinkClubState extends State<addLinkClub> {
                               children: [
                                 Text(
                                   //截取固定长度的文字
-                                  truncateText(SearchValue.isNotEmpty ? searchClub[index] : allClub[index], 10),
+                                  truncateText(SearchValue.isNotEmpty ? searchClub[index]['club_name'] : allClub[index]['club_name'], 10),
                                   style:  TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w700,
@@ -147,7 +147,7 @@ class _addLinkClubState extends State<addLinkClub> {
                                   ),
                                   child:Center(
                                     child: Text(
-                                      "育人实践基地",
+                                      SearchValue.isNotEmpty ? searchClub[index]['club_sort'] : allClub[index]['club_sort'],
                                       //style: _kLabelStyle,
                                       strutStyle: StrutStyle(height: 1.h),
                                       style: TextStyle(color: Colors.black,
