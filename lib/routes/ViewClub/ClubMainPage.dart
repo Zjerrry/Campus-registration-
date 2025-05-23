@@ -21,7 +21,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 child: Padding(
                   padding:  EdgeInsets.all(8.0.r),
                   child: Text("社团主页",style: TextStyle(fontSize: 20.38.sp,fontWeight: FontWeight.w700),),
@@ -35,7 +35,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ClubSettings(),
+                    builder: (context) => const ClubSettings(),
                   ),
                 );
               },

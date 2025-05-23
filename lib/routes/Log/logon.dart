@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/models/dio/getNet.dart';
+import 'package:test_fist/main.dart';
 
 //注册页面
 class LogonRoute extends StatefulWidget {
@@ -80,12 +81,18 @@ class _LogonRouteState extends State<LogonRoute> {
                                   {
                                     try{
                                       await GetNet().register(
-                                          school_number: int.tryParse(_StudentIDController.text.trim())!, name: _nameController.text.trim(), password: _pwdController.text.trim()
+                                          school_number: int.tryParse(_StudentIDController.text.trim())!,
+                                          name: _nameController.text.trim(),
+                                          password: _pwdController.text.trim()
                                       );
                                     }catch(e){
                                       print(e);
                                     }
-                                    Navigator.pop(context);
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(builder: (context){return const MyApp();}),
+                                            (route)=>false
+                                    );
                                   }else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text("请完整填写内容"))

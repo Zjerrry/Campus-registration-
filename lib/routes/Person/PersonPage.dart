@@ -6,7 +6,6 @@ import 'package:test_fist/routes/Notification/NotificationCenter.dart';
 import 'MyCollection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
-import 'package:test_fist/routes/Log/LogPage.dart';
 
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
@@ -218,11 +217,10 @@ Widget logOut(BuildContext context)
             actions: [
               IconButton(onPressed: (){
                 GlobalInformation().clearUser();
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context){
-                      return const MyApp();
-                    })
+                    MaterialPageRoute(builder: (context){return const MyApp();}),
+                        (route)=>false
                 );
               }, icon: const Icon(Icons.done_rounded)),
               IconButton(onPressed: (){

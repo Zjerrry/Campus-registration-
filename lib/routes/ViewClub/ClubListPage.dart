@@ -31,7 +31,7 @@ class _ClubListPageState extends State<ClubListPage> {
           ),
         )
       ),
-      body: ClubList_Body()
+      body: const ClubList_Body()
     );
   }
 }

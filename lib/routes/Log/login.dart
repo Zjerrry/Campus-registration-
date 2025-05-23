@@ -81,11 +81,10 @@ class _LoginRouteState extends State<LoginRoute> {
                                   );
                                 }
                               else{
-                                Navigator.push(
+                                Navigator.pushAndRemoveUntil(
                                     context,
-                                    MaterialPageRoute(builder: (context){
-                                      return const MyApp();
-                                    })
+                                    MaterialPageRoute(builder: (context){return const MyApp();}),
+                                        (route)=>false
                                 );
                               }
                             }catch(e){
