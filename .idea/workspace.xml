@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="66951caf-b8e9-48f3-be0f-0b6fe9e072e2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/fonts/MyIcons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/twt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commons/Global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commons/Global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Event Release/Event Release.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Event Release/addLinkClub.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/HomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Log/LogPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Log/LogPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Log/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Log/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Log/logon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Log/logon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Person/MyCollection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Person/MyCollection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Person/PersonPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Person/PersonPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/Settings/PersonSettings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/Settings/PersonSettings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/ViewClub/ClubListPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/ViewClub/ClubListPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/ViewClub/ClubMainPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/ViewClub/ClubMainPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routes/ViewEvent/EventView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes/ViewEvent/EventView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/ClubSearch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/ClubSearch.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2xSmM9cNGybwTtUETjbIvQqqzcb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-22.04/home/zjerry/workapp/Campus-registration-",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-22.04\home\zjerry\workapp\Campus-registration-" />
+      <recent name="\\wsl.localhost\Ubuntu-22.04\home\zjerry\workapp\Campus-registration-\lib\routes\ViewEvent" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="66951caf-b8e9-48f3-be0f-0b6fe9e072e2" name="Changes" comment="" />
+      <created>1747939799306</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747939799306</updated>
+    </task>
+    <servers />
+  </component>
+</project>

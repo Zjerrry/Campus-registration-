@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_fist/commons/Global.dart';
+import 'package:test_fist/main.dart';
 import 'package:test_fist/routes/Settings/PersonSettings.dart';
 import 'package:test_fist/routes/Notification/NotificationCenter.dart';
 import 'MyCollection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
+
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
 
@@ -17,6 +20,7 @@ class _PersonPageState extends State<PersonPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          logOut(context),
           IconButton(
             onPressed: () {
               Navigator.push(
@@ -26,7 +30,7 @@ class _PersonPageState extends State<PersonPage> {
               ),
               );
             },
-            icon: const Icon(Icons.email_outlined, size: 30),
+            icon: Icon(Icons.email_outlined, size: 30.sp),
 
           ),
           IconButton(
@@ -38,7 +42,7 @@ class _PersonPageState extends State<PersonPage> {
               ),
             );
             },
-            icon: const Icon(MyIcons.setting_2, size: 30),
+            icon: Icon(MyIcons.setting_2, size: 30.sp),
           ),
         ],
       ),
@@ -70,7 +74,7 @@ class _PersonPageState extends State<PersonPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "用户名",
+                              GlobalInformation().userInformation['name'],
                               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 fontSize:20.sp,),
@@ -78,7 +82,7 @@ class _PersonPageState extends State<PersonPage> {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              "2023234222",
+                              GlobalInformation().userInformation['school_number'].toString(),
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 17.sp,
@@ -202,3 +206,29 @@ BoxDecoration ButtonStyle()
 }
 
 
+Widget logOut(BuildContext context)
+{
+  return IconButton(icon: Icon(Icons.login,size: 30.sp,), onPressed: () {
+    showDialog
+      (context: context,
+        builder: (context){
+          return AlertDialog(
+            title: const Text("确认退出登录？"),
+            actions: [
+              IconButton(onPressed: (){
+                GlobalInformation().clearUser();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context){return const MyApp();}),
+                        (route)=>false
+                );
+              }, icon: const Icon(Icons.done_rounded)),
+              IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: const Icon(Icons.close_rounded)),
+            ],
+          );
+        }
+    );
+  });
+}

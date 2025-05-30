@@ -17,9 +17,8 @@ class _PersonSettingsState extends State<PersonSettings> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
-        title: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 90.w),
-            child: const Text('个人信息更改',style: TextStyle(
+        title: const Center(
+            child: Text('个人信息更改',style: TextStyle(
               fontWeight: FontWeight.bold
               ),
             )

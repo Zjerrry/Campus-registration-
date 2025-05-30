@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_fist/routes/ViewClub/ClubListPage.dart';
-import 'package:test_fist/routes/Event%20Release/Event%20Release.dart';
 import 'ViewEvent/EventView.dart';
 import 'package:test_fist/routes/Person/PersonPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,14 +24,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       bottomNavigationBar: _BottomBar(
         selectedIndex: _selectedIndex,
         onSelected: _onItemTapped,
       ),//学生或社团 person&event&home
         body: _Body(_selectedIndex),//页面
-      floatingActionButton: _selectedIndex == 0?FloatBotton(context):null
     );
   }
 }
@@ -50,37 +47,45 @@ class _BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      // 背景颜色
-      //backgroundColor: Colors.black,
-      // 选中图标主题
-      selectedIconTheme: const IconThemeData(
-        // 图标颜色
-        color: Colors.blue,
-        // 图标大小
-        size: 32,
-        // 图标透明度
-        opacity: 1.0,
-      ),
-      // 未选中图标主题
-      unselectedIconTheme: const IconThemeData(
-        color: Colors.grey,
-        size: 32,
-        opacity: 0.5,
-      ),
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(MyIcons.home_2),label: ''),
-        BottomNavigationBarItem(icon: Icon(MyIcons.profile_2user),label: ''),
-        BottomNavigationBarItem(icon: Icon(MyIcons.user),label: ''),
-      ],
-      onTap: (index) =>
-        onSelected(index)
-
-      ,// 添加点击回调
-      currentIndex: selectedIndex, // 绑定状态
+    return Container(
+        height: 100.h,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(40.r),topRight: Radius.circular(40.r)),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  offset: Offset(0,-8.h),
+                  spreadRadius: 2.r,
+                  blurRadius: 40.r
+              )
+            ]
+        ),
+        child: BottomAppBar(
+          color: Colors.transparent,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              BottomButton(MyIcons.home_2, 0, 32,selectedIndex==0?Colors.blue:Colors.grey),
+              BottomButton(MyIcons.profile_2user, 1, 32,selectedIndex==1?Colors.blue:Colors.grey),
+              BottomButton(MyIcons.user, 2, 32,selectedIndex==2?Colors.blue:Colors.grey),
+            ],
+          ),
+        )
     );
   }
+  Widget BottomButton(IconData icons,int index,double size,Color color)
+  {
+    return GestureDetector(
+        onTap: ()=>onSelected(index),
+        child: Icon(icons,size: size.r,color: color,)
+    );
+
+  }
+
 }
+
+
 
 Widget _Body(int currentIndex) {
   // 根据currentIndex显示不同内容
@@ -90,24 +95,4 @@ Widget _Body(int currentIndex) {
     const PersonPage()
   ];
   return pages[currentIndex];
-}
-
-Widget FloatBotton(BuildContext context)
-{
-  return FloatingActionButton(
-    onPressed:  ()
-    {
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context){
-            return const EventReleasePage();
-          })
-      );
-    },
-    backgroundColor: Colors.blue,
-    shape: const CircleBorder(),
-    child: const Icon(Icons.add,color: Colors.white,),
-  );
-
-
 }

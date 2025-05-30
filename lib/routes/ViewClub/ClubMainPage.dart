@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_fist/widgets/my_icons_icons.dart';
 
 class ClubMainPage extends StatefulWidget {
-  const ClubMainPage({super.key,required this.ClubName});
+  const ClubMainPage({super.key,required this.club});
+  final Map<String,dynamic> club;
 
-  final String ClubName;
   @override
   State<ClubMainPage> createState() => _ClubMainPageState();
 }
@@ -21,7 +21,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 child: Padding(
                   padding:  EdgeInsets.all(8.0.r),
                   child: Text("社团主页",style: TextStyle(fontSize: 20.38.sp,fontWeight: FontWeight.w700),),
@@ -35,11 +35,11 @@ class _ClubMainPageState extends State<ClubMainPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ClubSettings(),
+                    builder: (context) => const ClubSettings(),
                   ),
                 );
               },
-              icon: const Icon(MyIcons.setting_2,size: 40,)
+              icon: Icon(MyIcons.setting_2,size: 30.sp,)
           )
         ],
       ),
@@ -48,7 +48,7 @@ class _ClubMainPageState extends State<ClubMainPage> {
         slivers: [
           //------------------------------------------------------------------------
           //社团信息
-          ClubInformation(clubname: widget.ClubName,),
+          ClubInformation(club: widget.club,),
 
           //-------------------------社团活动----------------------------------------
           SliverList(
@@ -74,8 +74,8 @@ class _ClubMainPageState extends State<ClubMainPage> {
 
 
 class ClubInformation extends StatefulWidget {
-  const ClubInformation({super.key,required this.clubname});
-  final String clubname;
+  const ClubInformation({super.key,required this.club});
+  final Map<String,dynamic> club;
 
   @override
   State<ClubInformation> createState() => _ClubInformationState();
@@ -123,7 +123,7 @@ class _ClubInformationState extends State<ClubInformation> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //--------------名称------------------------
-                        Text(widget.clubname,
+                        Text(widget.club['club_name'],
                           style:TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 20.sp
@@ -148,7 +148,7 @@ class _ClubInformationState extends State<ClubInformation> {
                                 borderRadius: BorderRadius.circular(31.r)
                             ),
                             child:Center(
-                              child: Text("育人实践基地",style: TextStyle(
+                              child: Text(widget.club['club_sort'],style: TextStyle(
                                   fontWeight: FontWeight.w700,fontSize: 13.sp
                               ),),
                             ),
@@ -169,7 +169,7 @@ class _ClubInformationState extends State<ClubInformation> {
                                 color: Colors.grey
                             ),
                             child: Center(
-                              child: Text(GlobalInformation().collectedClubs.contains(widget.clubname)
+                              child: Text(GlobalInformation().collectedClubs.contains(widget.club)
                                   ?"已关注":"关注社团"
                                 ,style: TextStyle(
                                   fontWeight: FontWeight.w400,
@@ -177,16 +177,16 @@ class _ClubInformationState extends State<ClubInformation> {
                               ),),
                             )
                         ),
-                        IconButton(icon:Icon(GlobalInformation().collectedClubs.contains(widget.clubname)
+                        IconButton(icon:Icon(GlobalInformation().collectedClubs.contains(widget.club)
                             ?Icons.star:Icons.star_border,size: 23,
-                          color:GlobalInformation().collectedClubs.contains(widget.clubname)
+                          color:GlobalInformation().collectedClubs.contains(widget.club)
                               ?Colors.yellow[700]:Colors.black,),
                             onPressed: (){
-                              if(!GlobalInformation().collectedClubs.contains(widget.clubname)) {
-                                GlobalInformation().addCollectedClub(widget.clubname);
+                              if(!GlobalInformation().collectedClubs.contains(widget.club)) {
+                                GlobalInformation().addCollectedClub(widget.club);
                               }
                               else{
-                                GlobalInformation().removeCollectedClub(widget.clubname);
+                                GlobalInformation().removeCollectedClub(widget.club);
                               }
                               setState(() {});
                             }
@@ -219,7 +219,7 @@ class _ClubInformationState extends State<ClubInformation> {
                     ),
                     Expanded(
                       child: Text(
-                        "该社团是XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                        widget.club['club_information'],
                         style: TextStyle(
                             color: Colors.grey[600],
                             height: 1.5.h,

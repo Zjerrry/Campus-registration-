@@ -17,7 +17,9 @@ class _ClubListPageState extends State<ClubListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TopSearchBar(
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          child: TopSearchBar(
             lable: "搜索社团",
             SearchValue: SearchValue,
             onSearch: (value){
@@ -26,9 +28,10 @@ class _ClubListPageState extends State<ClubListPage> {
                 Search(SearchValue);
               });
             },
-        ),
+          ),
+        )
       ),
-      body: ClubList_Body()
+      body: const ClubList_Body()
     );
   }
 }
@@ -44,6 +47,7 @@ class ClubList_Body extends StatefulWidget {
 
 class _ClubList_BodyState extends State<ClubList_Body> {
   List dataList = _ClubListPageState.SearchValue != "" ? searchClub:allClub;
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -75,12 +79,13 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 builder: (context)
                                 {
                                   return ClubMainPage(
-                                    ClubName:_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index] ,
+                                    club:_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index],
+
                                   );
                                 })
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: 378.w,
                         height: 140.h,
                         child: Row(
@@ -88,7 +93,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(right: 20.w),
-                              child: Container(
+                              child: SizedBox(
                                 width: 112.w,
                                 height: 113.h,
                                 child: ClipRRect(
@@ -115,7 +120,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   //--------------名称------------------------
-                                  Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]:allClub[index], 10),
+                                  Text(truncateText(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]['club_name']:allClub[index]['club_name'], 10),
                                     style: TextStyle(
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w500,
@@ -141,7 +146,7 @@ class _ClubList_BodyState extends State<ClubList_Body> {
                                           borderRadius: BorderRadius.circular(31.r)
                                       ),
                                       child:Center(
-                                        child: Text("育人实践基地",style: TextStyle(
+                                        child: Text(_ClubListPageState.SearchValue.isNotEmpty ? searchClub[index]['club_sort']:allClub[index]['club_sort'],style: TextStyle(
                                             fontWeight: FontWeight.w700,fontSize: 13.sp
                                         ),),
                                       ),
