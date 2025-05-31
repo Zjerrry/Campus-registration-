@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
-import 'logon.dart';
+import 'Register.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LogPage extends StatefulWidget {
@@ -49,7 +49,7 @@ class _LogPageState extends State<LogPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context){
-                            return const LoginRoute();
+                            return const Login();
                           })
                       );
                     },
@@ -70,7 +70,7 @@ class _LogPageState extends State<LogPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context){
-                            return const LogonRoute();
+                            return const Register();
                           })
                       );
 

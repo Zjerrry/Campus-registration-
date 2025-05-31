@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test_fist/commons/Global.dart';
-import 'package:test_fist/main.dart';
 import 'package:test_fist/models/dio/getNet.dart';
-import 'package:test_fist/routes/HomePage.dart';
+import 'package:test_fist/main.dart';
+import 'package:test_fist/commons/Global.dart';
+import 'package:haptic_feedback/haptic_feedback.dart';
 
 //注册页面
-class LoginRoute extends StatefulWidget {
-  const LoginRoute({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<LoginRoute> createState() => _LoginRouteState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginRouteState extends State<LoginRoute> {
+class _LoginState extends State<Login> {
   TextEditingController _StudentIDController = TextEditingController();//学号
   TextEditingController _pwdController = TextEditingController();//密码
   bool pwdShow = false;
@@ -21,9 +21,16 @@ class _LoginRouteState extends State<LoginRoute> {
   bool _nameAutoFocus = true;
 
   @override
+  void dispose() {
+    _StudentIDController.dispose();
+    _pwdController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("登录"),),
+      appBar: AppBar(title: const Text("登录"),),
       body: Padding(
         padding:  EdgeInsets.all(16.0.w),
         child: Form(
@@ -67,33 +74,40 @@ class _LoginRouteState extends State<LoginRoute> {
                     constraints: BoxConstraints.expand(height: 55.0.h),
                     child: ElevatedButton(
                         onPressed: () async{
+                          final can = await Haptics.canVibrate();
+                          if (!can) return;
                           final form = _fromKey.currentState as FormState?;
-                          if(form!=null&&form.validate())
-                          {
+                          int schoolNumber = int.tryParse(_StudentIDController.text.trim())!;
+                          String password = _pwdController.text.trim().toString();
+                          if(form!=null&&form.validate()) {
                             try{
-                              int _schoolnumber = int.tryParse(_StudentIDController.text.trim())!;
-                              String _password = _pwdController.text.trim();
                               final listOfUser = await GetNet().login();
-                              if(!loginCheck(listOfUser, _schoolnumber, _password))
-                                {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text("学号或密码错误"))
-                                  );
-                                }
-                              else{
+                              if(loginCheck(listOfUser, schoolNumber, password)) {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(builder: (context){return const MyApp();}),
                                         (route)=>false
                                 );
                               }
+                              else {
+                                await Haptics.vibrate(HapticsType.error).then((onValue){
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("学号或密码错误")));
+                                });
+                              }
                             }catch(e){
-                              print(e);
+                              await Haptics.vibrate(HapticsType.error).then((onValue){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text("发生错误，请稍后重试")));
+                                print(e);
+                              });
                             }
-                          }else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("请完整填写内容"))
-                            );
+                          }
+                          else {
+                            await Haptics.vibrate(HapticsType.error).then((onValue){
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text("请完整填写内容")));
+                            });
                           }
 
                         },
@@ -107,12 +121,12 @@ class _LoginRouteState extends State<LoginRoute> {
   }
 }
 
-bool loginCheck(List<Map<String,dynamic>> listOfUser,int schoolNumber,String password)
+bool loginCheck(List<Map<String,dynamic>> listOfUser,int studentID,String password)
 {
   for ( Map<String,dynamic> item in listOfUser) {
-    if(item['school_number'] != schoolNumber ) continue;
+    if(item['school_number'] != studentID ) continue;
     if(item['password'] != password ) return false;
-    GlobalInformation().loadUser(item['id'], item['name'], item['school_number']);
+    GlobalInformation().loadUser(item['id'],item['name'],item['school_number']);
     return true;
   }
   return false;

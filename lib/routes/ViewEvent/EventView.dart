@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'EventSearch.dart';
 import 'package:test_fist/models/dio/getNet.dart';
 import 'package:test_fist/routes/Event_Release/Event_Release.dart';
+import 'EventDetail.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class EventView extends StatefulWidget {
   const EventView({super.key});
@@ -25,6 +27,8 @@ class _EventViewState extends State<EventView> {
   bool _isLoad = true;
   List<Map<String,dynamic>> eventList = [];
 
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+
   Future<void> loadEvent() async {
     final response = await GetNet().fetchListOfEvent();
     setState(() {
@@ -39,6 +43,13 @@ class _EventViewState extends State<EventView> {
     nowTime = TitleTime[getTime().getTitleTime()];
     loadEvent();
   }
+
+  void _onRefresh() async
+  {
+    await loadEvent();
+    _refreshController.refreshCompleted();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,35 +101,46 @@ class _EventViewState extends State<EventView> {
           headerSliverBuilder: (BuildContext context,bool inner){
             return [
               SliverToBoxAdapter(
-                child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    height: 33.h,
-                    width: 392.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.r),
-                        color: Colors.blue[50]
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 10.w,),
-                        Text("${nowTime},${GlobalInformation().userInformation['name']}",
-                        style: TextStyle(
-                            color: Colors.blue[800],
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold
+                  child:Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Container(
+                        height: 33.h,
+                        width: 392.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+                            color: Colors.blue[50]
                         ),
-                      ),]
-                    )
-                  ),
-                )
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 10.w,),
+                              Text("${nowTime},${GlobalInformation().userInformation['name']}",
+                                style: TextStyle(
+                                    color: Colors.blue[800],
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),]
+                        )
+                    ),
+                  )
 
               ),
               TopImageSliver(context)
             ];
           },
-          body: _isLoad?const Center(child: CircularProgressIndicator()):EventViewList(context),
-      ),
+          body: SmartRefresher(
+              controller: _refreshController,
+            onRefresh: _onRefresh,
+            header: const ClassicHeader(
+              releaseText: '释放刷新',
+              completeText: '刷新完成',
+              refreshingText: '刷新中',
+              idleText: '下拉刷新',
+            ),
+            child: _isLoad?const Center(child: CircularProgressIndicator()):EventViewList(context),
+          ),
+        ),
+
     );
   }
   Widget FloatBotton(BuildContext context)
@@ -154,99 +176,113 @@ class _EventViewState extends State<EventView> {
 
           return SizedBox(
             //width: 70,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      //--------------------------------------
-                      // 发帖人信息
-                      //---- 头像 ----
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: Container(
-                          width: 50.w,
-                          height: 50.h,
-                          decoration:  BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey[350]
+            child: InkWell(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) {
+                          return EventDetail(
+                            event: event,
+                          );
+                        }
+                    )
+                );
+              },
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        //--------------------------------------
+                        // 发帖人信息
+                        //---- 头像 ----
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Container(
+                            width: 50.w,
+                            height: 50.h,
+                            decoration:  BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey[350]
 
+                            ),
                           ),
                         ),
-                      ),
 
-                      Expanded(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                event['publisher_name'].toString(),
-                                style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold
+                        Expanded(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  event['publisher_name'].toString(),
+                                  style: TextStyle(
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                event['publisher_schoolnumber'].toString(),
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 17.sp,
+                                Text(
+                                  event['publisher_schoolnumber'].toString(),
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 17.sp,
+                                  ),
                                 ),
-                              ),
-                            ]),
-                      ),
+                              ]),
+                        ),
 
-                    ],
-                  ),
-                  //-----------------------------------------------------------
-                  //--------------活动内容---------------------------------------
-                  Padding(padding: EdgeInsets.only(top:20.h,left: 20.w,right: 20.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //-------------标题-------------
-                        Text(
-                          event['title'],
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        //----------------内容---------------------------
-                        Text(
-                          event['content'],
-                          style: TextStyle(fontSize: 14.sp),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        //----发布时间----
-                        SizedBox(height: 10.h,),
-                        Text('${time.year}-${time.month}-${time.day}   ${time.hour}:${time.minute}',style: TextStyle(fontSize: 14.sp,color: Colors.grey),)
                       ],
                     ),
-                  ),
-                  //-----------------------------------------------------------------------
-                  //--------------------功能键----------------------------------------------
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Row(
-                      children: [
-                        //评论
-                        IconButton(onPressed: (){},
-                          icon: const Icon(MyIcons.message),
-                        ),
-                        //点赞
-                        IconButton(onPressed: (){}, icon: const Icon(MyIcons.like_1)),
-                        //收藏
-                        IconButton(onPressed: (){}, icon: const Icon(Icons.thumb_down_alt_outlined)),
-                      ],
+                    //-----------------------------------------------------------
+                    //--------------活动内容---------------------------------------
+                    Padding(padding: EdgeInsets.only(top:20.h,left: 20.w,right: 20.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //-------------标题-------------
+                          Text(
+                            event['title'],
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp,),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          //----------------内容---------------------------
+                          Text(
+                            event['content'],
+                            style: TextStyle(fontSize: 14.sp),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          //----发布时间----
+                          SizedBox(height: 10.h,),
+                          Text('${time.year}-${time.month}-${time.day}   ${time.hour}:${time.minute}',style: TextStyle(fontSize: 14.sp,color: Colors.grey),)
+                        ],
+                      ),
                     ),
-                  )
-                ]
-            ),
+                    //-----------------------------------------------------------------------
+                    //--------------------功能键----------------------------------------------
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Row(
+                        children: [
+                          //评论
+                          IconButton(onPressed: (){},
+                            icon: const Icon(MyIcons.message),
+                          ),
+                          //点赞
+                          IconButton(onPressed: (){}, icon: const Icon(MyIcons.like_1)),
+                          //收藏
+                          IconButton(onPressed: (){}, icon: const Icon(Icons.thumb_down_alt_outlined)),
+                        ],
+                      ),
+                    )
+                  ]
+              ),
+            )
           );
         }
     );
